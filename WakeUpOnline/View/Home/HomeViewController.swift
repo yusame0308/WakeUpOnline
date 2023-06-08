@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 final class HomeViewController: UIViewController {
     
@@ -24,6 +25,16 @@ final class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
+        
+        setupLayout()
+    }
+    
+    private func setupLayout() {
+        view.addSubview(homeTableView)
+        
+        homeTableView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
     
 }
@@ -35,7 +46,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return HomeTableViewCell()
+        let cell = HomeTableViewCell()
+        cell.textLabel?.text = wakeUpInfos[indexPath.row].userName
+        return cell
     }
     
 }
