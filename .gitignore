@@ -28,10 +28,10 @@ DerivedData/
 timeline.xctimeline
 playground.xcworkspace
 
-Packages/
-Package.pins
-Package.resolved
-*.xcodeproj
+# Packages/
+# Package.pins
+# Package.resolved
+# *.xcodeproj
 
 .build/
 
