@@ -8,9 +8,9 @@
 import UIKit.UIColor
 
 extension UIColor {
-    static let darkBrown = UIColor(named: "DarkBrown")!
-    static let blackBrown = UIColor(named: "BlackBrown")!
-    static let lightBrown = UIColor(named: "LightBrown")!
-    static let grayBrown = UIColor(named: "GrayBrown")!
-    static let accentBrown = UIColor(named: "AccentBrown")!
+    static let darkBrown = R.color.darkBrown()!
+    static let blackBrown = R.color.blackBrown()!
+    static let lightBrown = R.color.lightBrown()!
+    static let grayBrown = R.color.grayBrown()!
+    static let accentBrown = R.color.accentBrown()!
 }

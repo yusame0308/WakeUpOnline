@@ -14,7 +14,7 @@ final class InfoCardView: UIView {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 100
         imageView.clipsToBounds = true
-        imageView.image = UIImage(named: "Ski-Parking")
+        imageView.image = R.image.skiParking()
         return imageView
     }()
     
