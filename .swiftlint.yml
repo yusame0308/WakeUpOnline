@@ -1,0 +1,15 @@
+#disabled_rules:
+
+# 対象のフォルダ
+included:
+  - WakeUpOnline
+
+# 1行あたりの文字数制限を300に変更
+line_length:
+  warning: 300
+  ignores_comments: true
+
+# 変数名が2文字以上なら許可に変更
+identifier_name:
+  min_length:
+    warning: 2
