@@ -8,15 +8,17 @@
 import UIKit.UIImage
 
 extension UIImage {
-    func resize(size newSize: CGSize) -> UIImage? {
-        let widthRatio = newSize.width / size.width
-        let heightRatio = newSize.height / size.height
-        let ratio = widthRatio < heightRatio ? widthRatio : heightRatio
+    // 正方形にリサイズ
+    func cropResizedSquare(_ resizeWidth: CGFloat) -> UIImage? {
+        let minSide = min(size.width, size.height)
+        let ratio = resizeWidth / minSide
 
-        let resizeSize = CGSize(width: size.width * ratio, height: size.height * ratio)
+        let origin = size.width > size.height
+        ? CGPoint(x: (minSide - size.width) * 0.5 * ratio, y: 0.0)
+        : CGPoint(x: 0.0, y: (minSide - size.height) * 0.5 * ratio)
 
-        UIGraphicsBeginImageContextWithOptions(resizeSize, false, 0.0)
-        draw(in: CGRect(origin: .zero, size: resizeSize))
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: resizeWidth, height: resizeWidth), false, 0.0)
+        draw(in: CGRect(origin: origin, size: CGSize(width: size.width * ratio, height: size.height * ratio)))
         let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
 
