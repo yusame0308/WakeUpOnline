@@ -23,5 +23,5 @@ let wakeUpInfos = [
     WakeUpInfo(userName: "太郎", message: "早起きがんばります", time: 0915, iconUrl: "", totalDates: 2, consecutiveDates: 2),
     WakeUpInfo(userName: "山田", message: "がんばります", time: 0920, iconUrl: "", totalDates: 1, consecutiveDates: 0),
     WakeUpInfo(userName: "タロウ", message: "がんばります", time: 0945, iconUrl: "", totalDates: 9, consecutiveDates: 3),
-    WakeUpInfo(userName: "やまだ", message: "がんばります", time: 1000, iconUrl: "", totalDates: 5, consecutiveDates: 5),
+    WakeUpInfo(userName: "やまだ", message: "がんばります", time: 1000, iconUrl: "", totalDates: 5, consecutiveDates: 5)
 ]
