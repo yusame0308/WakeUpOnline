@@ -11,24 +11,30 @@ import SnapKit
 final class InfoCardView: UIView {
 
     private let iconImageView: UIImageView = {
+        let imageWidth: CGFloat = 50
         let imageView = UIImageView()
-        imageView.layer.cornerRadius = 100
+        imageView.layer.cornerRadius = imageWidth * 0.5
         imageView.clipsToBounds = true
-        imageView.image = R.image.skiParking()
+        // 正方形にリサイズ
+        imageView.image = R.image.skiParking()?.cropResizedSquare(imageWidth)
         return imageView
     }()
 
     override init(frame: CGRect) {
         super.init(frame: .zero)
+
         setupLayout()
     }
 
     private func setupLayout() {
+        self.backgroundColor = .lightBrown
         self.addSubview(iconImageView)
 
+        self.snp.makeConstraints { make in
+            make.height.equalTo(100)
+        }
+
         iconImageView.snp.makeConstraints { make in
-            make.width.equalTo(20)
-            make.height.equalTo(20)
             make.center.equalToSuperview()
         }
     }
