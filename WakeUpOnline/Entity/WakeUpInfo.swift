@@ -15,6 +15,7 @@ struct WakeUpInfo {
     let totalDates: Int
     let consecutiveDates: Int
 
+    // 画面表示のための時間文字列
     var timeText: String {
         var timeString = String(time)
         timeString.insert(":", at: timeString.index(timeString.endIndex, offsetBy: -2))
