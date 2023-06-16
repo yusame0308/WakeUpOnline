@@ -20,6 +20,21 @@ final class InfoCardView: UIView {
         return imageView
     }()
 
+    private let userNameLabel: UILabel = {
+        let label = UILabel()
+        return label
+    }()
+
+    private let messageLabel: UILabel = {
+        let label = UILabel()
+        return label
+    }()
+
+    private let recordLabel: UILabel = {
+        let label = UILabel()
+        return label
+    }()
+
     override init(frame: CGRect) {
         super.init(frame: .zero)
 
@@ -37,12 +52,18 @@ final class InfoCardView: UIView {
         self.addSubview(iconImageView)
 
         self.snp.makeConstraints { make in
-            make.height.equalTo(80)
+            make.height.equalTo(70)
         }
 
         iconImageView.snp.makeConstraints { make in
             make.center.equalToSuperview()
         }
+    }
+
+    func setupTexts(by wakeUpInfo: WakeUpInfo) {
+        userNameLabel.text = wakeUpInfo.userName
+        messageLabel.text = wakeUpInfo.message
+        recordLabel.text = wakeUpInfo.recordText
     }
 
     required init?(coder: NSCoder) {
