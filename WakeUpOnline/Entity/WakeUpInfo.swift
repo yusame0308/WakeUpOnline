@@ -15,11 +15,16 @@ struct WakeUpInfo {
     let totalDates: Int
     let consecutiveDates: Int
 
-    // 画面表示のための時間文字列
+    // 画面表示のための起床時間の文字列
     var timeText: String {
         var timeString = String(time)
         timeString.insert(":", at: timeString.index(timeString.endIndex, offsetBy: -2))
         return timeString
+    }
+
+    // 画面表示のための達成記録の文字列
+    var recordText: String {
+        return "通算 \(totalDates)\n連続 \(consecutiveDates)"
     }
 }
 
