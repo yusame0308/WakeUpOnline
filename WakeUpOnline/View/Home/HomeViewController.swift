@@ -16,6 +16,7 @@ final class HomeViewController: UIViewController {
         let tv = UITableView()
         tv.delegate = self
         tv.dataSource = self
+        tv.separatorColor = .clear
         tv.showsVerticalScrollIndicator = false
         tv.register(HomeTableViewCell.self, forCellReuseIdentifier: cellID)
         return tv
@@ -33,7 +34,9 @@ final class HomeViewController: UIViewController {
         view.addSubview(homeTableView)
 
         homeTableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.horizontalEdges.equalToSuperview()
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(10)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-10)
         }
     }
 
