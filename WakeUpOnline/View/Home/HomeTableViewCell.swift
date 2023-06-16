@@ -12,13 +12,14 @@ final class HomeTableViewCell: UITableViewCell {
 
     private let timeLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
-        label.textColor = .darkBrown
+        label.font = UIFont.systemFont(ofSize: 20, weight: .medium)
+        label.textColor = .blackBrown
         return label
     }()
 
     private let infoCardView = InfoCardView()
 
+    // TableViewから呼ばれる
     func render(with wakeUpInfo: WakeUpInfo) {
         timeLabel.text = wakeUpInfo.timeText
         setupLayout()
@@ -33,10 +34,10 @@ final class HomeTableViewCell: UITableViewCell {
         contentView.addSubview(baseStackView)
 
         baseStackView.snp.makeConstraints { make in
-            make.top.equalTo(contentView).offset(20)
-            make.left.equalTo(contentView).offset(20)
-            make.bottom.equalTo(contentView).offset(-20)
-            make.right.equalTo(contentView).offset(-20)
+            make.top.equalTo(contentView).offset(10)
+            make.left.equalTo(contentView).offset(30)
+            make.bottom.equalTo(contentView).offset(-10)
+            make.right.equalTo(contentView).offset(-30)
         }
 
         timeLabel.snp.makeConstraints { make in
