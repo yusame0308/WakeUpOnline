@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().standardAppearance = navigationBarAppearance
         UINavigationBar.appearance().compactAppearance = navigationBarAppearance
         UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
-        UINavigationBar.appearance().tintColor = .systemBrown
+        UINavigationBar.appearance().tintColor = .accentBrown
 
         // TabBarの外観設定
         let tabBarAppearance = UITabBarAppearance()
@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabBarAppearance.backgroundColor = .white
         UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
         UITabBar.appearance().standardAppearance = tabBarAppearance
-        UITabBar.appearance().tintColor = .systemBrown
+        UITabBar.appearance().tintColor = .accentBrown
 
         return true
     }
