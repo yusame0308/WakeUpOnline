@@ -10,28 +10,44 @@ import SnapKit
 
 final class InfoCardView: UIView {
 
+    // アイコンの大きさ
+    static let iconWidth: CGFloat = 50
+
+    // アイコン
     private let iconImageView: UIImageView = {
-        let imageWidth: CGFloat = 50
         let imageView = UIImageView()
         // 画像を正方形にリサイズ
-        imageView.image = R.image.skiParking()?.cropResizedSquare(imageWidth)
-        imageView.layer.cornerRadius = imageWidth * 0.5
+        imageView.image = R.image.skiParking()?.cropResizedSquare(iconWidth)
+        imageView.layer.cornerRadius = iconWidth * 0.5
         imageView.clipsToBounds = true
         return imageView
     }()
 
+    // 名前
     private let userNameLabel: UILabel = {
         let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        label.textColor = .blackBrown
+        label.numberOfLines = 2
+        label.lineBreakMode = .byClipping
         return label
     }()
 
+    // メッセージ
     private let messageLabel: UILabel = {
         let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        label.textColor = .grayBrown
+        label.numberOfLines = 2
         return label
     }()
 
+    // 達成記録
     private let recordLabel: UILabel = {
         let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+        label.textColor = .accentBrown
+        label.numberOfLines = 2
         return label
     }()
 
@@ -39,6 +55,7 @@ final class InfoCardView: UIView {
         super.init(frame: .zero)
 
         self.backgroundColor = .white
+        // 影を追加
         self.layer.shadowColor = UIColor.blackBrown.cgColor
         self.layer.shadowOffset = CGSize(width: 0, height: 0)
         self.layer.shadowRadius = 2
@@ -49,21 +66,44 @@ final class InfoCardView: UIView {
     }
 
     private func setupLayout() {
-        self.addSubview(iconImageView)
+        let nameStackView = UIStackView(arrangedSubviews: [userNameLabel, messageLabel])
+        nameStackView.axis = .vertical
+        nameStackView.alignment = .leading
+        nameStackView.spacing = 3
+        // 右側にスペースを追加
+        nameStackView.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
+        nameStackView.isLayoutMarginsRelativeArrangement = true
 
-        self.snp.makeConstraints { make in
-            make.height.equalTo(70)
+        let baseStackView = UIStackView(arrangedSubviews: [iconImageView, nameStackView, recordLabel])
+        baseStackView.axis = .horizontal
+        baseStackView.alignment = .center
+        baseStackView.spacing = 10
+
+        self.addSubview(baseStackView)
+
+        baseStackView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(15)
+            make.left.equalToSuperview().offset(10)
+            make.bottom.equalToSuperview().offset(-15)
+            make.right.equalToSuperview()
         }
 
+        // アイコンのwidth
         iconImageView.snp.makeConstraints { make in
-            make.center.equalToSuperview()
+            make.width.equalTo(InfoCardView.iconWidth)
+        }
+
+        // 達成記録のwidth
+        recordLabel.snp.makeConstraints { make in
+            make.width.equalTo(65)
         }
     }
 
-    func setupTexts(by wakeUpInfo: WakeUpInfo) {
+    // Labelに文字を表示
+    func setupTexts(with wakeUpInfo: WakeUpInfo) {
         userNameLabel.text = wakeUpInfo.userName
-        messageLabel.text = wakeUpInfo.message
-        recordLabel.text = wakeUpInfo.recordText
+        messageLabel.attributedText = wakeUpInfo.message.attributedStringWithLineHeightMultiple(by: 0.85)
+        recordLabel.attributedText = wakeUpInfo.recordText.attributedStringWithKern(2)
     }
 
     required init?(coder: NSCoder) {

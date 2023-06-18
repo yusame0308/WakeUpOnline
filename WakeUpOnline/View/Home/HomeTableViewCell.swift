@@ -22,6 +22,7 @@ final class HomeTableViewCell: UITableViewCell {
     // TableViewから呼ばれる
     func render(with wakeUpInfo: WakeUpInfo) {
         timeLabel.text = wakeUpInfo.timeText
+        infoCardView.setupTexts(with: wakeUpInfo)
         setupLayout()
     }
 
@@ -35,13 +36,13 @@ final class HomeTableViewCell: UITableViewCell {
 
         baseStackView.snp.makeConstraints { make in
             make.top.equalTo(contentView).offset(10)
-            make.left.equalTo(contentView).offset(30)
+            make.left.equalTo(contentView).offset(20)
             make.bottom.equalTo(contentView).offset(-10)
-            make.right.equalTo(contentView).offset(-30)
+            make.right.equalTo(contentView).offset(-20)
         }
 
         timeLabel.snp.makeConstraints { make in
-            make.width.equalTo(70)
+            make.width.equalTo(65)
         }
     }
 
