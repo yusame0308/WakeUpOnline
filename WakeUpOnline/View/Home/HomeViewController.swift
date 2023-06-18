@@ -18,6 +18,8 @@ final class HomeViewController: UIViewController {
         tv.dataSource = self
         tv.separatorColor = .clear
         tv.showsVerticalScrollIndicator = false
+        tv.allowsSelection = false
+        tv.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
         tv.register(HomeTableViewCell.self, forCellReuseIdentifier: cellID)
         return tv
     }()
@@ -34,9 +36,7 @@ final class HomeViewController: UIViewController {
         view.addSubview(homeTableView)
 
         homeTableView.snp.makeConstraints { make in
-            make.horizontalEdges.equalToSuperview()
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(10)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-10)
+            make.edges.equalTo(view.safeAreaLayoutGuide)
         }
     }
 
