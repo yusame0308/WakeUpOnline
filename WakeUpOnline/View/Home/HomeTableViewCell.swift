@@ -10,6 +10,7 @@ import SnapKit
 
 final class HomeTableViewCell: UITableViewCell {
 
+    // 起床時間
     private let timeLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20, weight: .medium)
@@ -17,6 +18,7 @@ final class HomeTableViewCell: UITableViewCell {
         return label
     }()
 
+    // カードビュー
     private let infoCardView = InfoCardView()
 
     // TableViewから呼ばれる
