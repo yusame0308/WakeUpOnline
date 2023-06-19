@@ -24,12 +24,26 @@ final class HomeViewController: UIViewController {
         return tv
     }()
 
+    // リロードボタン
+    private let reloadButton: UIButton = {
+        var config = UIButton.Configuration.plain()
+        config.image = UIImage(systemName: "arrow.clockwise", withConfiguration: UIImage.SymbolConfiguration(weight: .semibold))
+        config.baseForegroundColor = .darkBrown
+        return UIButton(configuration: config)
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = .white
 
+        setupNavigationBar()
         setupLayout()
+    }
+
+    // NavigationBarの設定
+    private func setupNavigationBar() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: reloadButton)
     }
 
     private func setupLayout() {
