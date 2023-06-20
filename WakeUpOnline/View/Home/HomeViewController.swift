@@ -68,9 +68,11 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 
-    // Cellを押した時
+    // Cellを押してユーザ詳細画面を表示
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("ok")
+        let userDetailViewController = UserDetailViewController(wakeUpInfo: wakeUpInfos[indexPath.row])
+        userDetailViewController.modalPresentationStyle = .pageSheet
+        present(userDetailViewController, animated: true)
     }
 
 }
