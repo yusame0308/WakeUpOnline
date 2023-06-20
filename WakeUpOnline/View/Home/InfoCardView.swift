@@ -11,7 +11,7 @@ import SnapKit
 final class InfoCardView: UIView {
 
     // アイコンの大きさ
-    static let iconWidth: CGFloat = 50
+    private static let iconWidth: CGFloat = 50
 
     // アイコン
     private let iconImageView: UIImageView = {
