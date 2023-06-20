@@ -18,7 +18,6 @@ final class HomeViewController: UIViewController {
         tv.dataSource = self
         tv.separatorColor = .clear
         tv.showsVerticalScrollIndicator = false
-        tv.allowsSelection = false
         tv.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
         tv.register(HomeTableViewCell.self, forCellReuseIdentifier: cellID)
         return tv
@@ -64,8 +63,14 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! HomeTableViewCell // swiftlint:disable:this force_cast
+        cell.selectionStyle = .none
         cell.render(with: wakeUpInfos[indexPath.row])
         return cell
+    }
+
+    // Cellを押した時
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("ok")
     }
 
 }
