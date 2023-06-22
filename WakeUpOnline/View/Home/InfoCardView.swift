@@ -96,9 +96,9 @@ final class InfoCardView: UIView {
 
     // Labelに文字を表示
     func setupTexts(with wakeUpInfo: WakeUpInfo) {
-        userNameLabel.text = wakeUpInfo.userName
+        userNameLabel.attributedText = wakeUpInfo.userName.attributedStringWithLineHeightMultiple(by: 0.85)
         messageLabel.attributedText = wakeUpInfo.message.attributedStringWithLineHeightMultiple(by: 0.85)
-        recordLabel.attributedText = wakeUpInfo.recordText.attributedStringWithKern(2)
+        recordLabel.attributedText = wakeUpInfo.recordText.attributedStringWithKern(1)
     }
 
     required init?(coder: NSCoder) {

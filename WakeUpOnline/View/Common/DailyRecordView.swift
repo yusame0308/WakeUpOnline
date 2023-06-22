@@ -40,7 +40,7 @@ final class DailyRecordView: UIView {
     init(viewWidth: CGFloat, recordText: String) {
         itemWidth = viewWidth / 2 - 50
         dailyLogCollectionView = DailyLogCollectionView(width: itemWidth)
-        recordLabel.text = recordText
+        recordLabel.attributedText = recordText.attributedStringWithKern(1)
 
         super.init(frame: .zero)
 

@@ -60,8 +60,8 @@ final class UserDetailViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
 
         timeLabel.text = wakeUpInfo.timeText
-        userNameLabel.text = wakeUpInfo.userName
-        messageLabel.text = wakeUpInfo.message
+        userNameLabel.attributedText = wakeUpInfo.userName.attributedStringWithLineHeightMultiple(by: 0.85)
+        messageLabel.attributedText = wakeUpInfo.message.attributedStringWithLineHeightMultiple(by: 0.85)
     }
 
     required init?(coder: NSCoder) {
