@@ -15,11 +15,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navigationBarAppearance = UINavigationBarAppearance()
         navigationBarAppearance.configureWithOpaqueBackground()
         navigationBarAppearance.backgroundColor = .white
-        navigationBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.systemBrown]
+        navigationBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.blackBrown]
         UINavigationBar.appearance().standardAppearance = navigationBarAppearance
         UINavigationBar.appearance().compactAppearance = navigationBarAppearance
         UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
-        UINavigationBar.appearance().tintColor = .accentBrown
+        UINavigationBar.appearance().tintColor = .blackBrown
 
         // TabBarの外観設定
         let tabBarAppearance = UITabBarAppearance()

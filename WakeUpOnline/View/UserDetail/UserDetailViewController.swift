@@ -7,10 +7,12 @@
 
 import UIKit
 
-class UserDetailViewController: UIViewController {
+final class UserDetailViewController: UIViewController {
+
+    private let wakeUpInfo: WakeUpInfo
 
     // アイコンの大きさ
-    static let iconWidth: CGFloat = 100
+    private static let iconWidth: CGFloat = 100
 
     // 起床時間
     private let timeLabel: UILabel = {
@@ -49,22 +51,17 @@ class UserDetailViewController: UIViewController {
         return label
     }()
 
-    // 達成記録
-    private let recordLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
-        label.textColor = .accentBrown
-        label.numberOfLines = 2
-        return label
-    }()
+    // デイリーレコード
+    private lazy var dailyRecordView = DailyRecordView(viewWidth: view.bounds.width, recordText: wakeUpInfo.recordText)
 
     init(wakeUpInfo: WakeUpInfo) {
+        self.wakeUpInfo = wakeUpInfo
+
         super.init(nibName: nil, bundle: nil)
 
         timeLabel.text = wakeUpInfo.timeText
         userNameLabel.text = wakeUpInfo.userName
         messageLabel.text = wakeUpInfo.message
-        recordLabel.text = wakeUpInfo.recordText
     }
 
     required init?(coder: NSCoder) {
@@ -80,7 +77,8 @@ class UserDetailViewController: UIViewController {
     }
 
     private func setupLayout() {
-        let baseStackView = UIStackView(arrangedSubviews: [timeLabel, iconImageView, userNameLabel, messageLabel, recordLabel])
+        // 全体のStackView
+        let baseStackView = UIStackView(arrangedSubviews: [timeLabel, iconImageView, userNameLabel, messageLabel, dailyRecordView])
         baseStackView.axis = .vertical
         baseStackView.alignment = .center
         baseStackView.distribution = .equalSpacing
@@ -88,7 +86,14 @@ class UserDetailViewController: UIViewController {
         view.addSubview(baseStackView)
 
         baseStackView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaLayoutGuide)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
+            make.left.equalTo(view.safeAreaLayoutGuide).offset(20)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-20)
+            make.right.equalTo(view.safeAreaLayoutGuide).offset(-20)
+        }
+
+        dailyRecordView.snp.makeConstraints { make in
+            make.horizontalEdges.equalTo(baseStackView)
         }
     }
 
