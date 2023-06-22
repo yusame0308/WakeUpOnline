@@ -55,12 +55,7 @@ final class InfoCardView: UIView {
         super.init(frame: .zero)
 
         self.backgroundColor = .white
-        // 影を追加
-        self.layer.shadowColor = UIColor.blackBrown.cgColor
-        self.layer.shadowOffset = CGSize(width: 0, height: 0)
-        self.layer.shadowRadius = 2
-        self.layer.shadowOpacity = 0.4
-        self.layer.cornerRadius = 5
+        self.addShadow()
 
         setupLayout()
     }
