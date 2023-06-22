@@ -17,7 +17,7 @@ final class InfoCardView: UIView {
     private let iconImageView: UIImageView = {
         let imageView = UIImageView()
         // 画像を正方形にリサイズ
-        imageView.image = R.image.skiParking()?.cropResizedSquare(iconWidth)
+        imageView.image = R.image.testImage1()?.cropResizedSquare(iconWidth)
         imageView.layer.cornerRadius = iconWidth * 0.5
         imageView.clipsToBounds = true
         return imageView
