@@ -27,7 +27,6 @@ final class HomeViewController: UIViewController {
     private let reloadButton: UIButton = {
         var config = UIButton.Configuration.plain()
         config.image = UIImage(systemName: "arrow.clockwise", withConfiguration: UIImage.SymbolConfiguration(weight: .semibold))
-        config.baseForegroundColor = .darkBrown
         return UIButton(configuration: config)
     }()
 
