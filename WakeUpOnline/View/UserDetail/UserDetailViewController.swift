@@ -86,15 +86,24 @@ final class UserDetailViewController: UIViewController {
         view.addSubview(baseStackView)
 
         baseStackView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(40)
             make.left.equalTo(view.safeAreaLayoutGuide).offset(20)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-20)
+//            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-40)
             make.right.equalTo(view.safeAreaLayoutGuide).offset(-20)
         }
 
         dailyRecordView.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(baseStackView)
         }
+    }
+
+    // スペースを開けるためのViewを生成
+    private func createSpacing(_ height: CGFloat) -> UIView {
+        let view = UIView()
+        view.snp.makeConstraints { make in
+            make.height.equalTo(height)
+        }
+        return view
     }
 
 }
