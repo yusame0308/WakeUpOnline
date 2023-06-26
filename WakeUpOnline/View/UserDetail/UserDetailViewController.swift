@@ -78,7 +78,7 @@ final class UserDetailViewController: UIViewController {
 
     private func setupLayout() {
         // 全体のStackView
-        let baseStackView = UIStackView(arrangedSubviews: [timeLabel, iconImageView, userNameLabel, messageLabel, dailyRecordView])
+        let baseStackView = UIStackView(arrangedSubviews: [timeLabel, iconImageView, userNameLabel, messageLabel, dailyRecordView, UIView().createSpacing(50)])
         baseStackView.axis = .vertical
         baseStackView.alignment = .center
         baseStackView.distribution = .equalSpacing
@@ -95,15 +95,6 @@ final class UserDetailViewController: UIViewController {
         dailyRecordView.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(baseStackView)
         }
-    }
-
-    // スペースを開けるためのViewを生成
-    private func createSpacing(_ height: CGFloat) -> UIView {
-        let view = UIView()
-        view.snp.makeConstraints { make in
-            make.height.equalTo(height)
-        }
-        return view
     }
 
 }
