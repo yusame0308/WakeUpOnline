@@ -78,7 +78,7 @@ final class UserDetailViewController: UIViewController {
 
     private func setupLayout() {
         // 全体のStackView
-        let baseStackView = UIStackView(arrangedSubviews: [timeLabel, iconImageView, userNameLabel, messageLabel, dailyRecordView, UIView().createSpacing(50)])
+        let baseStackView = UIStackView(arrangedSubviews: [timeLabel, iconImageView, userNameLabel, messageLabel, dailyRecordView])
         baseStackView.axis = .vertical
         baseStackView.alignment = .center
         baseStackView.distribution = .equalSpacing
