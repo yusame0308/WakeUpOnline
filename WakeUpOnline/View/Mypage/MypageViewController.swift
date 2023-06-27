@@ -9,7 +9,7 @@ import UIKit
 
 final class MypageViewController: UIViewController {
 
-    private var wakeUpInfo: WakeUpInfo = wakeUpInfos[0] {
+    private var wakeUpInfo: WakeUpInfo! {
         didSet {
             timeLabel.text = wakeUpInfo.timeText
             userNameLabel.attributedText = wakeUpInfo.userName.attributedStringWithLineHeightMultiple(by: 0.85)
@@ -62,6 +62,7 @@ final class MypageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        wakeUpInfo = wakeUpInfos[0]
 
         view.backgroundColor = .white
 
