@@ -75,7 +75,6 @@ final class DailyRecordView: UIView {
             make.height.equalTo(baseStackView)
             make.center.equalToSuperview()
         }
-
     }
 
     required init?(coder: NSCoder) {

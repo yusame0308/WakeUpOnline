@@ -70,8 +70,16 @@ final class MypageViewController: UIViewController {
     }
 
     private func setupLayout() {
+        // プロフィールのStackView
+        let profileStackView = UIStackView(arrangedSubviews: [iconImageView, userNameLabel, messageLabel])
+        profileStackView.axis = .vertical
+        profileStackView.alignment = .center
+        profileStackView.distribution = .equalSpacing
+        let profileView = profileStackView.withMargin(UIEdgeInsets(top: 15, left: 0, bottom: 15, right: 0))
+        profileView.addShadow()
+
         // 全体のStackView
-        let baseStackView = UIStackView(arrangedSubviews: [iconImageView, userNameLabel, messageLabel, dailyRecordView, timeLabel])
+        let baseStackView = UIStackView(arrangedSubviews: [profileView, dailyRecordView, timeLabel])
         baseStackView.axis = .vertical
         baseStackView.alignment = .center
         baseStackView.distribution = .equalSpacing
@@ -83,6 +91,10 @@ final class MypageViewController: UIViewController {
             make.left.equalTo(view.safeAreaLayoutGuide).offset(20)
 //            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-40)
             make.right.equalTo(view.safeAreaLayoutGuide).offset(-20)
+        }
+
+        profileView.snp.makeConstraints { make in
+            make.horizontalEdges.equalTo(baseStackView)
         }
 
         dailyRecordView.snp.makeConstraints { make in

@@ -25,4 +25,17 @@ extension UIView {
         }
         return self
     }
+
+    // 自身にmarginを追加
+    func withMargin(_ margin: UIEdgeInsets) -> UIView {
+        let view = UIView()
+        view.addSubview(self)
+        self.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(margin.top)
+            make.left.equalToSuperview().offset(margin.left)
+            make.bottom.equalToSuperview().offset(-margin.bottom)
+            make.right.equalToSuperview().offset(-margin.right)
+        }
+        return view
+    }
 }
