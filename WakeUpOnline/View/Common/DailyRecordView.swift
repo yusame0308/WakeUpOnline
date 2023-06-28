@@ -46,7 +46,6 @@ final class DailyRecordView: UIView {
 
         setupLayout()
 
-        self.backgroundColor = .white
         self.addShadow()
     }
 

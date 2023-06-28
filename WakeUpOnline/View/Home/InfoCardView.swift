@@ -54,7 +54,6 @@ final class InfoCardView: UIView {
     override init(frame: CGRect) {
         super.init(frame: .zero)
 
-        self.backgroundColor = .white
         self.addShadow()
 
         setupLayout()

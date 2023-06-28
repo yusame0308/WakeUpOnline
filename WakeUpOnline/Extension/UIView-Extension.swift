@@ -10,6 +10,7 @@ import UIKit
 extension UIView {
     // 自身に影を追加
     func addShadow() {
+        self.backgroundColor = .white
         self.layer.shadowColor = UIColor.blackBrown.cgColor
         self.layer.shadowOffset = CGSize(width: 0, height: 0)
         self.layer.shadowRadius = 2
