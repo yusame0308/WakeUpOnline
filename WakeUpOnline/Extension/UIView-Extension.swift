@@ -18,14 +18,6 @@ extension UIView {
         self.layer.cornerRadius = 5
     }
 
-    // 自身にheightを指定
-    func withHeight(_ height: CGFloat) -> UIView {
-        self.snp.makeConstraints { make in
-            make.height.equalTo(height)
-        }
-        return self
-    }
-
     // 自身にmarginを追加
     func withMargin(_ margin: UIEdgeInsets) -> UIView {
         let view = UIView()

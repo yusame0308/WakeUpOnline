@@ -79,7 +79,7 @@ final class MypageViewController: UIViewController {
         profileView.addShadow()
 
         // 全体のStackView
-        let baseStackView = UIStackView(arrangedSubviews: [profileView, dailyRecordView, timeLabel])
+        let baseStackView = UIStackView(arrangedSubviews: [profileView, SpacerView(height: 30), dailyRecordView, timeLabel])
         baseStackView.axis = .vertical
         baseStackView.alignment = .center
         baseStackView.distribution = .equalSpacing
