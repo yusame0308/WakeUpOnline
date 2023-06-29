@@ -74,23 +74,22 @@ final class MypageViewController: UIViewController {
         let profileStackView = UIStackView(arrangedSubviews: [iconImageView, userNameLabel, messageLabel])
         profileStackView.axis = .vertical
         profileStackView.alignment = .center
-        profileStackView.distribution = .equalSpacing
+        profileStackView.spacing = 10
         // プロフィールView
         let profileView = profileStackView.withMargin(top: 15, bottom: 15)
         profileView.addShadow()
 
         // 全体のStackView
-        let baseStackView = UIStackView(arrangedSubviews: [profileView, SpacerView(height: 30), dailyRecordView, timeLabel])
+        let baseStackView = UIStackView(arrangedSubviews: [profileView, dailyRecordView, timeLabel])
         baseStackView.axis = .vertical
         baseStackView.alignment = .center
-        baseStackView.distribution = .equalSpacing
+        baseStackView.spacing = 20
 
         view.addSubview(baseStackView)
 
         baseStackView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(40)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
             make.left.equalTo(view.safeAreaLayoutGuide).offset(20)
-//            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-40)
             make.right.equalTo(view.safeAreaLayoutGuide).offset(-20)
         }
 
