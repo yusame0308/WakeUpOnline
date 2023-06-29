@@ -75,7 +75,8 @@ final class MypageViewController: UIViewController {
         profileStackView.axis = .vertical
         profileStackView.alignment = .center
         profileStackView.distribution = .equalSpacing
-        let profileView = profileStackView.withMargin(UIEdgeInsets(top: 15, left: 0, bottom: 15, right: 0))
+        // プロフィールView
+        let profileView = profileStackView.withMargin(top: 15, bottom: 15)
         profileView.addShadow()
 
         // 全体のStackView

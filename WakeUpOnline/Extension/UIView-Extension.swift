@@ -19,14 +19,14 @@ extension UIView {
     }
 
     // 自身にmarginを追加
-    func withMargin(_ margin: UIEdgeInsets) -> UIView {
+    func withMargin(top: CGFloat = 0, left: CGFloat = 0, bottom: CGFloat = 0, right: CGFloat = 0) -> UIView {
         let view = UIView()
         view.addSubview(self)
         self.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(margin.top)
-            make.left.equalToSuperview().offset(margin.left)
-            make.bottom.equalToSuperview().offset(-margin.bottom)
-            make.right.equalToSuperview().offset(-margin.right)
+            make.top.equalToSuperview().offset(top)
+            make.left.equalToSuperview().offset(left)
+            make.bottom.equalToSuperview().offset(-bottom)
+            make.right.equalToSuperview().offset(-right)
         }
         return view
     }
