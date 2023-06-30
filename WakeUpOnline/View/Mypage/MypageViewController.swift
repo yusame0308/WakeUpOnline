@@ -11,7 +11,6 @@ final class MypageViewController: UIViewController {
 
     private var wakeUpInfo: WakeUpInfo! {
         didSet {
-            timeLabel.text = wakeUpInfo.timeText
             userNameLabel.attributedText = wakeUpInfo.userName.attributedStringWithLineHeightMultiple(by: 0.85)
             messageLabel.attributedText = wakeUpInfo.message.attributedStringWithLineHeightMultiple(by: 0.85)
         }
@@ -19,14 +18,6 @@ final class MypageViewController: UIViewController {
 
     // アイコンの大きさ
     private static let iconWidth: CGFloat = 100
-
-    // 起床時間
-    private let timeLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 32, weight: .medium)
-        label.textColor = .blackBrown
-        return label
-    }()
 
     // アイコン
     private let iconImageView: UIImageView = {
@@ -58,7 +49,10 @@ final class MypageViewController: UIViewController {
     }()
 
     // デイリーレコード
-    private lazy var dailyRecordView = DailyRecordView(viewWidth: view.bounds.width, recordText: wakeUpInfo.recordText)
+    private lazy var dailyRecordView = DailyRecordView(width: view.bounds.width - 40, recordText: wakeUpInfo.recordText)
+
+    // 起床時間リスト
+    private lazy var timeListView = TimeListView(width: view.bounds.width - 40, timeList: testTimeList)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,9 +74,9 @@ final class MypageViewController: UIViewController {
         profileView.addShadow()
 
         // 全体のStackView
-        let baseStackView = UIStackView(arrangedSubviews: [profileView, dailyRecordView, timeLabel])
+        let baseStackView = UIStackView(arrangedSubviews: [profileView, dailyRecordView, timeListView])
         baseStackView.axis = .vertical
-        baseStackView.alignment = .center
+        baseStackView.alignment = .fill
         baseStackView.spacing = 20
 
         view.addSubview(baseStackView)
@@ -91,14 +85,6 @@ final class MypageViewController: UIViewController {
             make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
             make.left.equalTo(view.safeAreaLayoutGuide).offset(20)
             make.right.equalTo(view.safeAreaLayoutGuide).offset(-20)
-        }
-
-        profileView.snp.makeConstraints { make in
-            make.horizontalEdges.equalTo(baseStackView)
-        }
-
-        dailyRecordView.snp.makeConstraints { make in
-            make.horizontalEdges.equalTo(baseStackView)
         }
     }
 

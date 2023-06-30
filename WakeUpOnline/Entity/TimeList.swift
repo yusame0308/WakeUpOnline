@@ -30,3 +30,5 @@ struct TimeList {
         }
     }
 }
+
+let testTimeList = TimeList(sunday: 1030, monday: 800, tuesday: 800, wednesday: 930, thursday: 800, friday: 715, saturday: 1000)

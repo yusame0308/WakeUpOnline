@@ -52,7 +52,7 @@ final class UserDetailViewController: UIViewController {
     }()
 
     // デイリーレコード
-    private lazy var dailyRecordView = DailyRecordView(viewWidth: view.bounds.width, recordText: wakeUpInfo.recordText)
+    private lazy var dailyRecordView = DailyRecordView(width: view.bounds.width - 40, recordText: wakeUpInfo.recordText)
 
     init(wakeUpInfo: WakeUpInfo) {
         self.wakeUpInfo = wakeUpInfo

@@ -20,7 +20,7 @@ final class DailyLogCollectionView: UICollectionView, UICollectionViewDataSource
         // FlowLayout
         let flowLayout = UICollectionViewFlowLayout()
         let availableWidth = Int(width) - Int(itemSpacing) * (horizontalItemCount - 1)
-        let itemWidth = availableWidth / 7
+        let itemWidth = availableWidth / horizontalItemCount
         flowLayout.itemSize = CGSize(width: itemWidth, height: itemWidth)
         flowLayout.minimumInteritemSpacing = itemSpacing
         flowLayout.minimumLineSpacing = itemSpacing
