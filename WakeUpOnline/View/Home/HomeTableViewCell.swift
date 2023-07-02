@@ -21,11 +21,14 @@ final class HomeTableViewCell: UITableViewCell {
     // カードビュー
     private let infoCardView = InfoCardView()
 
-    // TableViewから呼ばれる
-    func render(with wakeUpInfo: WakeUpInfo) {
-        timeLabel.text = wakeUpInfo.timeText
-        infoCardView.setupTexts(with: wakeUpInfo)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+
         setupLayout()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     private func setupLayout() {
@@ -46,6 +49,12 @@ final class HomeTableViewCell: UITableViewCell {
         timeLabel.snp.makeConstraints { make in
             make.width.equalTo(65)
         }
+    }
+
+    // TableViewから呼ばれる
+    func render(with wakeUpInfo: WakeUpInfo) {
+        timeLabel.text = wakeUpInfo.timeText
+        infoCardView.setupTexts(with: wakeUpInfo)
     }
 
 }
