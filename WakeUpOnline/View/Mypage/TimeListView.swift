@@ -34,7 +34,7 @@ final class TimeListView: UIView, UICollectionViewDataSource {
 
         // timeCollectionView
         timeCollectionView.dataSource = self
-        timeCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellID)
+        timeCollectionView.register(TimeCollectionViewCell.self, forCellWithReuseIdentifier: cellID)
         timeCollectionView.layer.cornerRadius = 5
     }
 
@@ -56,7 +56,7 @@ final class TimeListView: UIView, UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = timeCollectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath)
+        let cell = timeCollectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! TimeCollectionViewCell // swiftlint:disable:this force_cast
 
         // 最後のセル以外に区切り線を表示
         if indexPath.row != horizontalItemCount - 1 {
