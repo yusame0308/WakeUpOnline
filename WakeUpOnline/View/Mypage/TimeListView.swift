@@ -12,9 +12,11 @@ final class TimeListView: UIView, UICollectionViewDataSource {
     // 起床時間リスト
     private let timeCollectionView: UICollectionView
 
+    private let timeList: TimeList
+
     // layout
     private let horizontalItemCount = 7
-    private let itemHeight = 70
+    private let itemHeight = 60
 
     private let cellID = "timeCollectionViewCellID"
 
@@ -25,7 +27,8 @@ final class TimeListView: UIView, UICollectionViewDataSource {
         flowLayout.itemSize = CGSize(width: itemWidth, height: itemHeight)
         flowLayout.minimumInteritemSpacing = 0
 
-        timeCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        self.timeCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        self.timeList = timeList
 
         super.init(frame: .zero)
 
@@ -57,6 +60,8 @@ final class TimeListView: UIView, UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = timeCollectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! TimeCollectionViewCell // swiftlint:disable:this force_cast
+
+        cell.render(with: timeList.stringValues(of: indexPath.row+1))
 
         // 最後のセル以外に区切り線を表示
         if indexPath.row != horizontalItemCount - 1 {
