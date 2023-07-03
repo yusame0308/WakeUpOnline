@@ -116,6 +116,9 @@ final class MypageViewController: UIViewController {
     // 起床時間リスト編集画面を表示
     @objc func showTimeListEditView() {
         print(#function)
+        let timeListEditViewController = TimeListEditViewController()
+        timeListEditViewController.modalPresentationStyle = .pageSheet
+        present(timeListEditViewController, animated: true)
     }
 
 }
