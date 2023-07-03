@@ -48,6 +48,13 @@ final class MypageViewController: UIViewController {
         return label
     }()
 
+    // プロフィール
+    private var profileView: UIView = {
+        let view = UIView()
+        view.addShadow()
+        return view
+    }()
+
     // デイリーレコード
     private lazy var dailyRecordView = DailyRecordView(width: view.bounds.width - 40, recordText: wakeUpInfo.recordText)
 
@@ -61,6 +68,7 @@ final class MypageViewController: UIViewController {
         view.backgroundColor = .white
 
         setupLayout()
+        setupGesture()
     }
 
     private func setupLayout() {
@@ -70,8 +78,7 @@ final class MypageViewController: UIViewController {
         profileStackView.alignment = .center
         profileStackView.spacing = 10
         // プロフィールView
-        let profileView = profileStackView.withMargin(top: 15, bottom: 15)
-        profileView.addShadow()
+        profileView.addSubview(profileStackView.withMargin(top: 15, bottom: 15))
 
         // 全体のStackView
         let baseStackView = UIStackView(arrangedSubviews: [profileView, dailyRecordView, timeListView])
@@ -86,6 +93,26 @@ final class MypageViewController: UIViewController {
             make.left.equalTo(view.safeAreaLayoutGuide).offset(20)
             make.right.equalTo(view.safeAreaLayoutGuide).offset(-20)
         }
+    }
+
+    // ViewにGestureを設定
+    private func setupGesture() {
+        // プロフィール
+        let profileViewTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(showProfileEditView))
+        profileView.addGestureRecognizer(profileViewTapGestureRecognizer)
+        // 起床時間リスト
+        let timeListViewTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(showTimeListEditView))
+        timeListView.addGestureRecognizer(timeListViewTapGestureRecognizer)
+    }
+
+    // プロフィール編集画面を表示
+    @objc func showProfileEditView() {
+        print(#function)
+    }
+
+    // 起床時間リスト編集画面を表示
+    @objc func showTimeListEditView() {
+        print(#function)
     }
 
 }
