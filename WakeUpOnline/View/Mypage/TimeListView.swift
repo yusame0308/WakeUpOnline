@@ -48,9 +48,12 @@ final class TimeListView: UIView, UICollectionViewDataSource {
     private func setupLayout() {
         self.addSubview(timeCollectionView)
 
-        timeCollectionView.snp.makeConstraints { make in
+        self.snp.makeConstraints { make in
             make.height.equalTo(itemHeight)
-            make.horizontalEdges.equalToSuperview()
+        }
+
+        timeCollectionView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
     }
 

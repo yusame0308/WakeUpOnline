@@ -49,11 +49,7 @@ final class MypageViewController: UIViewController {
     }()
 
     // プロフィール
-    private var profileView: UIView = {
-        let view = UIView()
-        view.addShadow()
-        return view
-    }()
+    private var profileView = UIView()
 
     // デイリーレコード
     private lazy var dailyRecordView = DailyRecordView(width: view.bounds.width - 40, recordText: wakeUpInfo.recordText)
@@ -78,7 +74,8 @@ final class MypageViewController: UIViewController {
         profileStackView.alignment = .center
         profileStackView.spacing = 10
         // プロフィールView
-        profileView.addSubview(profileStackView.withMargin(top: 15, bottom: 15))
+        profileView = profileStackView.withMargin(top: 15, bottom: 15)
+        profileView.addShadow()
 
         // 全体のStackView
         let baseStackView = UIStackView(arrangedSubviews: [profileView, dailyRecordView, timeListView])
@@ -107,7 +104,6 @@ final class MypageViewController: UIViewController {
 
     // プロフィール編集画面を表示
     @objc func showProfileEditView() {
-        print(#function)
         let profileEditViewController = ProfileEditViewController()
         profileEditViewController.modalPresentationStyle = .pageSheet
         present(profileEditViewController, animated: true)
@@ -115,7 +111,6 @@ final class MypageViewController: UIViewController {
 
     // 起床時間リスト編集画面を表示
     @objc func showTimeListEditView() {
-        print(#function)
         let timeListEditViewController = TimeListEditViewController()
         timeListEditViewController.modalPresentationStyle = .pageSheet
         present(timeListEditViewController, animated: true)
