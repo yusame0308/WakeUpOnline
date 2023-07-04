@@ -9,15 +9,14 @@ import UIKit
 
 final class EditTextField: UITextField {
 
-    init(placeholder: String) {
+    init(placeholder: String, textColor: UIColor, fontSize: CGFloat) {
         super.init(frame: .zero)
 
         self.placeholder = placeholder
-        textColor = .gray
-        font = UIFont.systemFont(ofSize: 16, weight: .medium)
-        layer.borderColor = UIColor.gray.cgColor
-        layer.borderWidth = 0.5
-        layer.cornerRadius = 6
+        self.textColor = textColor
+        textAlignment = .center
+        font = UIFont.systemFont(ofSize: fontSize, weight: .medium)
+        self.addShadow()
         let frame = CGRect(x: 0, y: 0, width: 16, height: 0)
         leftView = UIView(frame: frame)
         leftViewMode = .always

@@ -104,7 +104,7 @@ final class MypageViewController: UIViewController {
 
     // プロフィール編集画面を表示
     @objc func showProfileEditView() {
-        let profileEditViewController = ProfileEditViewController()
+        let profileEditViewController = ProfileEditViewController(wakeUpInfo: wakeUpInfo)
         profileEditViewController.modalPresentationStyle = .pageSheet
         present(profileEditViewController, animated: true)
     }
