@@ -23,6 +23,16 @@ final class TimeListEditViewController: UIViewController {
     // 起床時間リスト
     private lazy var timeListView = TimeListView(width: view.bounds.width - 40, timeList: timeList)
 
+    // 時間ピッカー
+    private let timePicker: UIDatePicker = {
+        let picker = UIDatePicker()
+        picker.locale = Locale(identifier: "ja_JP")
+        picker.timeZone = TimeZone(identifier: "Asia/Tokyo")
+        picker.datePickerMode = .time
+        picker.preferredDatePickerStyle = .wheels
+        return picker
+    }()
+
     init(timeList: TimeList) {
         self.timeList = timeList
 
@@ -48,7 +58,7 @@ final class TimeListEditViewController: UIViewController {
 
     private func setupLayout() {
         // プロフィールのStackView
-        let baseStackView = UIStackView(arrangedSubviews: [titleLabel, timeListView])
+        let baseStackView = UIStackView(arrangedSubviews: [titleLabel, timeListView, timePicker])
         baseStackView.axis = .vertical
         baseStackView.alignment = .center
         baseStackView.spacing = 30
@@ -63,6 +73,10 @@ final class TimeListEditViewController: UIViewController {
 
         timeListView.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(baseStackView)
+        }
+
+        timePicker.snp.makeConstraints { make in
+            make.size.equalTo(CGSize(width: 250, height: 140))
         }
     }
 
