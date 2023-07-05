@@ -7,10 +7,14 @@
 
 import UIKit
 
+protocol TimeListViewDelegate: AnyObject {
+    func cellSelected()
+}
+
 final class TimeListView: UIView, UICollectionViewDataSource {
 
     // 起床時間リスト
-    private let timeCollectionView: UICollectionView
+    let timeCollectionView: UICollectionView
 
     private let timeList: TimeList
 
@@ -73,6 +77,11 @@ final class TimeListView: UIView, UICollectionViewDataSource {
             separator.backgroundColor = UIColor.blackBrown.withAlphaComponent(0.2).cgColor
             cell.layer.addSublayer(separator)
         }
+
+        // 選択時の背景色を変更
+        let selectedBackgroundView = UIView(frame: cell.frame)
+        selectedBackgroundView.backgroundColor = .blackBrown.withAlphaComponent(0.2)
+        cell.selectedBackgroundView = selectedBackgroundView
 
         return cell
     }

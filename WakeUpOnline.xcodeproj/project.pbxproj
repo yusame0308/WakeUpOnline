@@ -207,8 +207,6 @@
 			isa = PBXGroup;
 			children = (
 				1A380A522A30F5E100D3C58F /* MypageViewController.swift */,
-				1A6BBE082A4D65B30003D739 /* TimeListView.swift */,
-				1ADB14212A51C69100BEEB1C /* TimeCollectionViewCell.swift */,
 			);
 			path = Mypage;
 			sourceTree = "<group>";
@@ -221,6 +219,8 @@
 				1A6519FA2A416FFF00CBA380 /* DailyLogCollectionView.swift */,
 				1A6BBE052A4C88DD0003D739 /* SpacerView.swift */,
 				1A235E802A560FFA00B3571A /* SaveButton.swift */,
+				1A6BBE082A4D65B30003D739 /* TimeListView.swift */,
+				1ADB14212A51C69100BEEB1C /* TimeCollectionViewCell.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
