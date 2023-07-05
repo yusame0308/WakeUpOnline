@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PhotosUI
 
 final class ProfileEditViewController: UIViewController {
 
@@ -27,7 +28,7 @@ final class ProfileEditViewController: UIViewController {
 
     // 編集マーク
     private let editImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(systemName: "pencil.circle.fill")?.withConfiguration(UIImage.SymbolConfiguration(weight: .semibold)))
+        let imageView = UIImageView(image: UIImage(systemName: "pencil.circle.fill")?.withConfiguration(UIImage.SymbolConfiguration(weight: .bold)))
         imageView.tintColor = .blackBrown
         imageView.backgroundColor = .white
         imageView.layer.cornerRadius = editImageWidth * 0.5
@@ -57,6 +58,7 @@ final class ProfileEditViewController: UIViewController {
         view.backgroundColor = .white
 
         setupLayout()
+        setupAction()
     }
 
     private func setupLayout() {
@@ -89,10 +91,59 @@ final class ProfileEditViewController: UIViewController {
         // アイコンの編集マーク
         view.addSubview(editImageView)
         editImageView.snp.makeConstraints { make in
-            make.top.equalTo(iconButton).offset(5)
-            make.right.equalTo(iconButton).offset(-5)
+            make.top.equalTo(iconButton).offset(4)
+            make.right.equalTo(iconButton).offset(-4)
             make.size.equalTo(CGSize(width: ProfileEditViewController.editImageWidth, height: ProfileEditViewController.editImageWidth))
         }
+    }
+
+    private func setupAction() {
+        iconButton.addAction(UIAction { [weak self] _ in
+            guard let self = self else { return }
+            self.showPhotoPicker()
+        }, for: .primaryActionTriggered)
+    }
+
+    // 画像選択画面を表示
+    private func showPhotoPicker() {
+        var configuration = PHPickerConfiguration()
+        configuration.filter = PHPickerFilter.images
+        configuration.selectionLimit = 1
+        let picker = PHPickerViewController(configuration: configuration)
+        picker.delegate = self
+        present(picker, animated: true)
+    }
+
+}
+
+extension ProfileEditViewController: PHPickerViewControllerDelegate {
+
+    // 画像選択後の処理
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        guard let itemProvider = results.first?.itemProvider else {
+            picker.dismiss(animated: true)
+            return
+        }
+
+        // 画像をアイコンボタンにセット
+        if itemProvider.canLoadObject(ofClass: UIImage.self) {
+            itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
+                if let error = error {
+                    print(error)
+                    return
+                }
+
+                guard let image = image as? UIImage else {
+                    return
+                }
+
+                DispatchQueue.main.async {
+                    self?.iconButton.setImage(image.cropResizedSquare(ProfileEditViewController.iconWidth), for: .normal)
+                }
+            }
+        }
+
+        picker.dismiss(animated: true)
     }
 
 }
