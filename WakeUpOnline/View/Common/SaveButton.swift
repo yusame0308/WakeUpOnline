@@ -14,7 +14,7 @@ final class SaveButton: UIButton {
 
         var config = UIButton.Configuration.plain()
         config.attributedTitle = AttributedString("保存", attributes: AttributeContainer([.font: UIFont.systemFont(ofSize: 16, weight: .bold)]))
-        config.baseForegroundColor = .lightBrown
+        config.baseForegroundColor = .accentBrown
         config.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20)
         self.configuration = config
 

@@ -105,7 +105,10 @@ final class MypageViewController: UIViewController {
     // プロフィール編集画面を表示
     @objc func showProfileEditView() {
         let profileEditViewController = ProfileEditViewController(wakeUpInfo: wakeUpInfo)
-        profileEditViewController.modalPresentationStyle = .pageSheet
+        // ハーフモーダルに設定
+        if let sheet = profileEditViewController.sheetPresentationController {
+            sheet.detents = [.medium()]
+        }
         present(profileEditViewController, animated: true)
     }
 

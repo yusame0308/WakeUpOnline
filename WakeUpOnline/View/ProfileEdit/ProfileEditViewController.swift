@@ -14,6 +14,15 @@ final class ProfileEditViewController: UIViewController {
     private static let iconWidth: CGFloat = 100
     private static let editImageWidth: CGFloat = 25
 
+    // タイトルラベル
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "プロフィールを編集"
+        label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        label.textColor = .blackBrown
+        return label
+    }()
+
     // アイコンボタン
     private let iconButton: UIButton = {
         // 画像をセット
@@ -66,15 +75,15 @@ final class ProfileEditViewController: UIViewController {
 
     private func setupLayout() {
         // プロフィールのStackView
-        let baseStackView = UIStackView(arrangedSubviews: [iconButton, userNameTextField, messageTextField, saveButton])
+        let baseStackView = UIStackView(arrangedSubviews: [titleLabel, SpacerView(height: 5), iconButton, userNameTextField, messageTextField, SpacerView(), saveButton])
         baseStackView.axis = .vertical
         baseStackView.alignment = .center
-        baseStackView.spacing = 20
+        baseStackView.spacing = 15
 
         view.addSubview(baseStackView)
 
         baseStackView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(40)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(15)
             make.left.equalTo(view.safeAreaLayoutGuide).offset(40)
             make.right.equalTo(view.safeAreaLayoutGuide).offset(-40)
         }
