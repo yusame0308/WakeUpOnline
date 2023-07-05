@@ -105,6 +105,7 @@ final class MypageViewController: UIViewController {
     // プロフィール編集画面を表示
     @objc func showProfileEditView() {
         let profileEditViewController = ProfileEditViewController(wakeUpInfo: wakeUpInfo)
+        profileEditViewController.delegate = self
         // ハーフモーダルに設定
         if let sheet = profileEditViewController.sheetPresentationController {
             sheet.detents = [.medium()]
@@ -117,6 +118,17 @@ final class MypageViewController: UIViewController {
         let timeListEditViewController = TimeListEditViewController()
         timeListEditViewController.modalPresentationStyle = .pageSheet
         present(timeListEditViewController, animated: true)
+    }
+
+}
+
+extension MypageViewController: ProfileEditViewControllerDelegate {
+
+    // プロフィール保存ボタンの処理
+    func saveButtonDidPressed(userName: String, message: String, iconImage: UIImage?) {
+        userNameLabel.text = userName
+        messageLabel.text = message
+        iconImageView.image = iconImage
     }
 
 }

@@ -8,7 +8,13 @@
 import UIKit
 import PhotosUI
 
+protocol ProfileEditViewControllerDelegate: AnyObject {
+    func saveButtonDidPressed(userName: String, message: String, iconImage: UIImage?)
+}
+
 final class ProfileEditViewController: UIViewController {
+
+    weak var delegate: ProfileEditViewControllerDelegate?
 
     // アイコンの大きさ
     private static let iconWidth: CGFloat = 100
@@ -75,7 +81,7 @@ final class ProfileEditViewController: UIViewController {
 
     private func setupLayout() {
         // プロフィールのStackView
-        let baseStackView = UIStackView(arrangedSubviews: [titleLabel, SpacerView(height: 5), iconButton, userNameTextField, messageTextField, SpacerView(), saveButton])
+        let baseStackView = UIStackView(arrangedSubviews: [titleLabel, SpacerView(height: 10), iconButton, userNameTextField, messageTextField, SpacerView(), saveButton])
         baseStackView.axis = .vertical
         baseStackView.alignment = .center
         baseStackView.spacing = 15
@@ -114,6 +120,11 @@ final class ProfileEditViewController: UIViewController {
             guard let self = self else { return }
             self.showPhotoPicker()
         }, for: .primaryActionTriggered)
+
+        saveButton.addAction(UIAction { [weak self] _ in
+            guard let self = self else { return }
+            self.saveProfile()
+        }, for: .primaryActionTriggered)
     }
 
     // 画像選択画面を表示
@@ -124,6 +135,12 @@ final class ProfileEditViewController: UIViewController {
         let picker = PHPickerViewController(configuration: configuration)
         picker.delegate = self
         present(picker, animated: true)
+    }
+
+    // 保存ボタンの処理
+    private func saveProfile() {
+        delegate?.saveButtonDidPressed(userName: userNameTextField.text ?? "", message: messageTextField.text ?? "", iconImage: iconButton.imageView?.image)
+        self.dismiss(animated: true)
     }
 
 }
