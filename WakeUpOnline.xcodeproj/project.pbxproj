@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A235E812A560FFA00B3571A /* SaveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A235E802A560FFA00B3571A /* SaveButton.swift */; };
 		1A380A202A30EC9900D3C58F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A380A1F2A30EC9900D3C58F /* AppDelegate.swift */; };
 		1A380A222A30EC9900D3C58F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A380A212A30EC9900D3C58F /* SceneDelegate.swift */; };
 		1A380A242A30EC9900D3C58F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A380A232A30EC9900D3C58F /* HomeViewController.swift */; };
@@ -56,6 +57,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A235E802A560FFA00B3571A /* SaveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveButton.swift; sourceTree = "<group>"; };
 		1A380A1C2A30EC9900D3C58F /* WakeUpOnline.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WakeUpOnline.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A380A1F2A30EC9900D3C58F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1A380A212A30EC9900D3C58F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 				1A651A002A44724000CBA380 /* DailyRecordView.swift */,
 				1A6519FA2A416FFF00CBA380 /* DailyLogCollectionView.swift */,
 				1A6BBE052A4C88DD0003D739 /* SpacerView.swift */,
+				1A235E802A560FFA00B3571A /* SaveButton.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -438,6 +441,7 @@
 				1A380A612A319E2700D3C58F /* UIColor-Extension.swift in Sources */,
 				1A380A242A30EC9900D3C58F /* HomeViewController.swift in Sources */,
 				1ADB14292A52B34E00BEEB1C /* TimeListEditViewController.swift in Sources */,
+				1A235E812A560FFA00B3571A /* SaveButton.swift in Sources */,
 				1A380A202A30EC9900D3C58F /* AppDelegate.swift in Sources */,
 				1A380A532A30F5E100D3C58F /* MypageViewController.swift in Sources */,
 				1A380A512A30F4CF00D3C58F /* MainTabBarController.swift in Sources */,

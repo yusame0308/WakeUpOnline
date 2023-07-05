@@ -41,6 +41,9 @@ final class ProfileEditViewController: UIViewController {
     // メッセージのテキストフィールド
     private let messageTextField = EditTextField(placeholder: "メッセージ", textColor: .grayBrown, fontSize: 16)
 
+    // 保存ボタン
+    private let saveButton = SaveButton()
+
     init(wakeUpInfo: WakeUpInfo) {
         userNameTextField.text = wakeUpInfo.userName
         messageTextField.text = wakeUpInfo.message
@@ -63,7 +66,7 @@ final class ProfileEditViewController: UIViewController {
 
     private func setupLayout() {
         // プロフィールのStackView
-        let baseStackView = UIStackView(arrangedSubviews: [iconButton, userNameTextField, messageTextField])
+        let baseStackView = UIStackView(arrangedSubviews: [iconButton, userNameTextField, messageTextField, saveButton])
         baseStackView.axis = .vertical
         baseStackView.alignment = .center
         baseStackView.spacing = 20
