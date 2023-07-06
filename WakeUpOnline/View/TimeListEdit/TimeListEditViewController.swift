@@ -11,6 +11,14 @@ final class TimeListEditViewController: UIViewController {
 
     private var timeList: TimeList
 
+    // 選択中のセル番号
+    private var selectedCellIndex = 0 {
+        didSet {
+            // ピッカーに選択された時間を表示
+            timePicker.date = timeList.dateValue(of: selectedCellIndex + 1)
+        }
+    }
+
     // タイトルラベル
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -33,6 +41,9 @@ final class TimeListEditViewController: UIViewController {
         return picker
     }()
 
+    // 保存ボタン
+    private let saveButton = SaveButton()
+
     init(timeList: TimeList) {
         self.timeList = timeList
 
@@ -51,6 +62,7 @@ final class TimeListEditViewController: UIViewController {
         // セルを選択状態にする
         timeListView.timeCollectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .centeredHorizontally)
         timeListView.timeCollectionView.delegate = self
+        selectedCellIndex = 0
 
         setupLayout()
         setupAction()
@@ -58,7 +70,7 @@ final class TimeListEditViewController: UIViewController {
 
     private func setupLayout() {
         // プロフィールのStackView
-        let baseStackView = UIStackView(arrangedSubviews: [titleLabel, timeListView, timePicker])
+        let baseStackView = UIStackView(arrangedSubviews: [titleLabel, SpacerView(), timeListView, timePicker, saveButton])
         baseStackView.axis = .vertical
         baseStackView.alignment = .center
         baseStackView.spacing = 30
@@ -81,6 +93,15 @@ final class TimeListEditViewController: UIViewController {
     }
 
     private func setupAction() {
+        saveButton.addAction(UIAction { [weak self] _ in
+            guard let self = self else { return }
+            self.saveTimeList()
+        }, for: .primaryActionTriggered)
+    }
+
+    // 保存ボタンの処理
+    private func saveTimeList() {
+        print(#function)
     }
 
 }
@@ -88,7 +109,8 @@ final class TimeListEditViewController: UIViewController {
 extension TimeListEditViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.row)
+        selectedCellIndex = indexPath.row
+//        timePicker.date
     }
 
 }
