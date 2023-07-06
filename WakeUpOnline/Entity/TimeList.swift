@@ -20,6 +20,7 @@ struct TimeList {
     func stringValues(of index: Int) -> (weekDay: String, time: String) {
         let value = getValue(of: index)
         let timeString = timeText(of: value)
+
         switch index {
         case 1: return ("日", timeString)
         case 2: return ("月", timeString)
@@ -35,6 +36,22 @@ struct TimeList {
     // index(1〜7)から画面表示用のデータを取得
     func dateValue(of index: Int) -> Date {
         return convertToDate(from: getValue(of: index)) ?? Date()
+    }
+
+    // indexを指定して新しい時間を設定
+    mutating func setTime(at index: Int, date: Date) {
+        let timeInt = convertToInt(from: date) ?? 900
+
+        switch index {
+        case 1: sunday = timeInt
+        case 2: monday = timeInt
+        case 3: tuesday = timeInt
+        case 4: wednesday = timeInt
+        case 5: thursday = timeInt
+        case 6: friday = timeInt
+        case 7: saturday = timeInt
+        default: monday = timeInt
+        }
     }
 
     private func getValue(of index: Int) -> Int {
@@ -71,6 +88,16 @@ struct TimeList {
         dateTimeFormatter.dateFormat = "yyyy/MM/dd HH:mm"
 
         return dateTimeFormatter.date(from: fullDateString)
+    }
+
+    // DateからIntに変換
+    private func convertToInt(from date: Date) -> Int? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(identifier: "Asia/Tokyo")
+        dateFormatter.dateFormat = "HHmm"
+
+        let formatString = dateFormatter.string(from: date)
+        return Int(formatString)
     }
 }
 

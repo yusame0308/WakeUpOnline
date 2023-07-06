@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol TimeListEditViewControllerDelegate: AnyObject {
+    func saveButtonDidPressed(timeList: TimeList)
+}
+
 final class TimeListEditViewController: UIViewController {
+
+    weak var delegate: TimeListEditViewControllerDelegate?
 
     private var timeList: TimeList
 
@@ -101,7 +107,13 @@ final class TimeListEditViewController: UIViewController {
 
     // 保存ボタンの処理
     private func saveTimeList() {
-        print(#function)
+        // リファクタリングする
+        timeList.setTime(at: selectedCellIndex + 1, date: timePicker.date)
+        timeListView.timeList = timeList
+        timeListView.timeCollectionView.reloadData()
+        timeListView.timeCollectionView.selectItem(at: IndexPath(row: selectedCellIndex, section: 0), animated: false, scrollPosition: .centeredHorizontally)
+
+        delegate?.saveButtonDidPressed(timeList: timeList)
     }
 
 }

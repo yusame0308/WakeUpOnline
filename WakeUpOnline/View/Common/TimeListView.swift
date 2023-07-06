@@ -16,7 +16,7 @@ final class TimeListView: UIView, UICollectionViewDataSource {
     // 起床時間リスト
     let timeCollectionView: UICollectionView
 
-    private let timeList: TimeList
+    var timeList: TimeList // privateをつける
 
     // layout
     private let horizontalItemCount = 7
