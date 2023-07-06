@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1A235E812A560FFA00B3571A /* SaveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A235E802A560FFA00B3571A /* SaveButton.swift */; };
+		1A235E852A5668E800B3571A /* Date-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A235E842A5668E800B3571A /* Date-Extension.swift */; };
 		1A380A202A30EC9900D3C58F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A380A1F2A30EC9900D3C58F /* AppDelegate.swift */; };
 		1A380A222A30EC9900D3C58F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A380A212A30EC9900D3C58F /* SceneDelegate.swift */; };
 		1A380A242A30EC9900D3C58F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A380A232A30EC9900D3C58F /* HomeViewController.swift */; };
@@ -58,6 +59,7 @@
 
 /* Begin PBXFileReference section */
 		1A235E802A560FFA00B3571A /* SaveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveButton.swift; sourceTree = "<group>"; };
+		1A235E842A5668E800B3571A /* Date-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date-Extension.swift"; sourceTree = "<group>"; };
 		1A380A1C2A30EC9900D3C58F /* WakeUpOnline.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WakeUpOnline.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A380A1F2A30EC9900D3C58F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1A380A212A30EC9900D3C58F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 				1A811B7B2A36DA6300B63D83 /* UIImage-Extension.swift */,
 				1A811B8B2A3EEC6800B63D83 /* String-Extension.swift */,
 				1A6519FD2A44084300CBA380 /* UIView-Extension.swift */,
+				1A235E842A5668E800B3571A /* Date-Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -453,6 +456,7 @@
 				1A380A592A31750F00D3C58F /* WakeUpInfo.swift in Sources */,
 				1A6519FB2A416FFF00CBA380 /* DailyLogCollectionView.swift in Sources */,
 				1A811B7C2A36DA6300B63D83 /* UIImage-Extension.swift in Sources */,
+				1A235E852A5668E800B3571A /* Date-Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

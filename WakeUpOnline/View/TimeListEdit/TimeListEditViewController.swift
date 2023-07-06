@@ -44,6 +44,10 @@ final class TimeListEditViewController: UIViewController {
         picker.timeZone = TimeZone(identifier: "Asia/Tokyo")
         picker.datePickerMode = .time
         picker.preferredDatePickerStyle = .wheels
+        // 選択できる時間の範囲を指定
+        let (startDate, endDate) = Date.availableDateRange
+        picker.minimumDate = startDate
+        picker.maximumDate = endDate
         return picker
     }()
 
@@ -120,9 +124,9 @@ final class TimeListEditViewController: UIViewController {
 
 extension TimeListEditViewController: UICollectionViewDelegate {
 
+    // 選択されたセルの番号を保持
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedCellIndex = indexPath.row
-//        timePicker.date
     }
 
 }
