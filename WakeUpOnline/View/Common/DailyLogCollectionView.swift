@@ -49,7 +49,7 @@ final class DailyLogCollectionView: UICollectionView, UICollectionViewDataSource
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = self.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath)
-        cell.backgroundColor = .accentBrown
+        cell.backgroundColor = Bool.random() ? .accentBrown : .blackBrown.withAlphaComponent(0.2)
         cell.layer.cornerRadius = 4
         return cell
     }
