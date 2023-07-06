@@ -11,8 +11,8 @@ final class MypageViewController: UIViewController {
 
     private var wakeUpInfo: WakeUpInfo! {
         didSet {
-            userNameLabel.attributedText = wakeUpInfo.userName.attributedStringWithLineHeightMultiple(by: 0.85)
-            messageLabel.attributedText = wakeUpInfo.message.attributedStringWithLineHeightMultiple(by: 0.85)
+            userNameLabel.attributedText = wakeUpInfo.userName.attributedStringWithLineHeightMultiple(by: 0.85, isCentered: true)
+            messageLabel.attributedText = wakeUpInfo.message.attributedStringWithLineHeightMultiple(by: 0.85, isCentered: true)
         }
     }
 
@@ -74,7 +74,7 @@ final class MypageViewController: UIViewController {
         profileStackView.alignment = .center
         profileStackView.spacing = 10
         // プロフィールView
-        profileView = profileStackView.withMargin(top: 15, bottom: 15)
+        profileView = profileStackView.withMargin(top: 15, left: 30, bottom: 15, right: 30)
         profileView.addShadow()
 
         // 全体のStackView

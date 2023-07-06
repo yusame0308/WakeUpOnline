@@ -9,9 +9,13 @@ import UIKit
 
 extension String {
     // 行間を指定
-    func attributedStringWithLineHeightMultiple(by heightMultiple: CGFloat) -> NSAttributedString {
+    func attributedStringWithLineHeightMultiple(by heightMultiple: CGFloat, isCentered: Bool = false) -> NSAttributedString {
         let paragraph = NSMutableParagraphStyle()
         paragraph.lineHeightMultiple = heightMultiple
+
+        if isCentered {
+            paragraph.alignment = .center
+        }
 
         return NSAttributedString(string: self, attributes: [.paragraphStyle: paragraph])
     }

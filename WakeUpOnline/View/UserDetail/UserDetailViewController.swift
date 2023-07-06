@@ -60,8 +60,8 @@ final class UserDetailViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
 
         timeLabel.text = wakeUpInfo.timeText
-        userNameLabel.attributedText = wakeUpInfo.userName.attributedStringWithLineHeightMultiple(by: 0.85)
-        messageLabel.attributedText = wakeUpInfo.message.attributedStringWithLineHeightMultiple(by: 0.85)
+        userNameLabel.attributedText = wakeUpInfo.userName.attributedStringWithLineHeightMultiple(by: 0.85, isCentered: true)
+        messageLabel.attributedText = wakeUpInfo.message.attributedStringWithLineHeightMultiple(by: 0.85, isCentered: true)
     }
 
     required init?(coder: NSCoder) {
@@ -77,19 +77,31 @@ final class UserDetailViewController: UIViewController {
     }
 
     private func setupLayout() {
+        // プロフィールのStackView
+        let profileStackView = UIStackView(arrangedSubviews: [iconImageView, userNameLabel, messageLabel])
+        profileStackView.axis = .vertical
+        profileStackView.alignment = .center
+        profileStackView.spacing = 10
+        // プロフィールView
+        let profileView = profileStackView.withMargin(top: 15, left: 30, bottom: 15, right: 30)
+        profileView.addShadow()
+
         // 全体のStackView
-        let baseStackView = UIStackView(arrangedSubviews: [timeLabel, iconImageView, userNameLabel, messageLabel, dailyRecordView])
+        let baseStackView = UIStackView(arrangedSubviews: [timeLabel, SpacerView(), profileView, dailyRecordView])
         baseStackView.axis = .vertical
         baseStackView.alignment = .center
-        baseStackView.distribution = .equalSpacing
+        baseStackView.spacing = 20
 
         view.addSubview(baseStackView)
 
         baseStackView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(40)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(30)
             make.left.equalTo(view.safeAreaLayoutGuide).offset(20)
-//            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-40)
             make.right.equalTo(view.safeAreaLayoutGuide).offset(-20)
+        }
+
+        profileView.snp.makeConstraints { make in
+            make.horizontalEdges.equalTo(baseStackView)
         }
 
         dailyRecordView.snp.makeConstraints { make in
