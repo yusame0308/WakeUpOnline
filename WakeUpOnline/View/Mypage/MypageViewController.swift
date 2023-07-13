@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 final class MypageViewController: UIViewController {
 
@@ -129,16 +130,29 @@ final class MypageViewController: UIViewController {
 extension MypageViewController: ProfileEditViewControllerDelegate {
 
     // プロフィール保存ボタンの処理
-    func saveButtonDidPressed(userName: String, message: String, iconImage: UIImage?) {
+    func saveButtonDidPressed(userName: String, message: String, iconImage: UIImage?) async throws {
         userNameLabel.text = userName
         messageLabel.text = message
         iconImageView.image = iconImage
+
+        // FirebaseAuthのプロフィール更新
+        guard let user = Auth.auth().currentUser else { return }
+        let request = user.createProfileChangeRequest()
+        request.displayName = userName
+//        request.photoURL = photoURL
+
+        do {
+            try await request.commitChanges()
+        } catch {
+            throw error
+        }
     }
 
 }
 
 extension MypageViewController: TimeListEditViewControllerDelegate {
 
+    // 起床時間リスト保存ボタンの処理
     func saveButtonDidPressed(timeList: TimeList) {
         // リファクタリングする
         timeListView.timeList = timeList

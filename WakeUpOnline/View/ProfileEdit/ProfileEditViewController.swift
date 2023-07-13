@@ -9,7 +9,7 @@ import UIKit
 import PhotosUI
 
 protocol ProfileEditViewControllerDelegate: AnyObject {
-    func saveButtonDidPressed(userName: String, message: String, iconImage: UIImage?)
+    func saveButtonDidPressed(userName: String, message: String, iconImage: UIImage?) async throws
 }
 
 final class ProfileEditViewController: UIViewController {
@@ -123,7 +123,9 @@ final class ProfileEditViewController: UIViewController {
 
         saveButton.addAction(UIAction { [weak self] _ in
             guard let self = self else { return }
-            self.saveProfile()
+            Task {
+                await self.saveProfile()
+            }
         }, for: .primaryActionTriggered)
     }
 
@@ -138,9 +140,13 @@ final class ProfileEditViewController: UIViewController {
     }
 
     // 保存ボタンの処理
-    private func saveProfile() {
-        delegate?.saveButtonDidPressed(userName: userNameTextField.text ?? "", message: messageTextField.text ?? "", iconImage: iconButton.imageView?.image)
-        self.dismiss(animated: true)
+    private func saveProfile() async {
+        do {
+            try await delegate?.saveButtonDidPressed(userName: userNameTextField.text ?? "", message: messageTextField.text ?? "", iconImage: iconButton.imageView?.image)
+            self.dismiss(animated: true)
+        } catch {
+            print(error.localizedDescription)
+        }
     }
 
 }
