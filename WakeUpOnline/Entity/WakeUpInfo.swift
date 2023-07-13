@@ -14,6 +14,7 @@ struct WakeUpInfo {
     let iconUrl: String // アイコンURL
     let totalDates: Int // 通算記録
     let consecutiveDates: Int // 連続記録
+    let dailyLog: [Date] // 起床した日の記録
 
     // 画面表示のための起床時刻の文字列
     var timeText: String {
@@ -29,11 +30,11 @@ struct WakeUpInfo {
 }
 
 let wakeUpInfos = [
-    WakeUpInfo(userName: "太郎", message: "がんばります", time: 800, iconUrl: "", totalDates: 10, consecutiveDates: 3),
-    WakeUpInfo(userName: "山田", message: "よろしくお願いします。", time: 830, iconUrl: "", totalDates: 4, consecutiveDates: 2),
-    WakeUpInfo(userName: "テストユーザー", message: "がんばります", time: 900, iconUrl: "", totalDates: 8, consecutiveDates: 5),
-    WakeUpInfo(userName: "田中", message: "よろしくお願いします。よろしくお願いします。", time: 915, iconUrl: "", totalDates: 85, consecutiveDates: 2),
-    WakeUpInfo(userName: "テストテストテストテストテストテストテストテストテスト", message: "がんばります", time: 920, iconUrl: "", totalDates: 1, consecutiveDates: 0),
-    WakeUpInfo(userName: "タロウ", message: "よろしくお願いします。", time: 945, iconUrl: "", totalDates: 9, consecutiveDates: 3),
-    WakeUpInfo(userName: "やまだ", message: "がんばります", time: 1000, iconUrl: "", totalDates: 5, consecutiveDates: 5)
+    WakeUpInfo(userName: "太郎", message: "がんばります", time: 800, iconUrl: "", totalDates: 10, consecutiveDates: 3, dailyLog: [Date()]),
+    WakeUpInfo(userName: "山田", message: "よろしくお願いします。", time: 830, iconUrl: "", totalDates: 4, consecutiveDates: 2, dailyLog: [Date()]),
+    WakeUpInfo(userName: "テストユーザー", message: "がんばります", time: 900, iconUrl: "", totalDates: 8, consecutiveDates: 5, dailyLog: [Date()]),
+    WakeUpInfo(userName: "田中", message: "よろしくお願いします。よろしくお願いします。", time: 915, iconUrl: "", totalDates: 85, consecutiveDates: 2, dailyLog: [Date()]),
+    WakeUpInfo(userName: "テストテストテストテストテストテストテストテストテスト", message: "がんばります", time: 920, iconUrl: "", totalDates: 1, consecutiveDates: 0, dailyLog: [Date()]),
+    WakeUpInfo(userName: "タロウ", message: "よろしくお願いします。", time: 945, iconUrl: "", totalDates: 9, consecutiveDates: 3, dailyLog: [Date()]),
+    WakeUpInfo(userName: "やまだ", message: "がんばります", time: 1000, iconUrl: "", totalDates: 5, consecutiveDates: 5, dailyLog: [Date()])
 ]
