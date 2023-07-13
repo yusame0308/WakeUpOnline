@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import FirebaseCore
+import FirebaseAuth
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -28,6 +30,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
         UITabBar.appearance().standardAppearance = tabBarAppearance
         UITabBar.appearance().tintColor = .accentBrown
+
+        // Firebaseを初期化
+        FirebaseApp.configure()
+
+        // Firebaseの匿名認証
+        Task {
+            do {
+                let authResult = try await Auth.auth().signInAnonymously()
+                print(authResult.user.uid)
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
 
         return true
     }
