@@ -57,19 +57,19 @@ final class HomeViewController: UIViewController {
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        wakeUpInfos.count
+        users.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! HomeTableViewCell // swiftlint:disable:this force_cast
         cell.selectionStyle = .none
-        cell.render(with: wakeUpInfos[indexPath.row])
+        cell.render(with: users[indexPath.row])
         return cell
     }
 
     // Cellを押してユーザ詳細画面を表示
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let userDetailViewController = UserDetailViewController(wakeUpInfo: wakeUpInfos[indexPath.row])
+        let userDetailViewController = UserDetailViewController(user: users[indexPath.row])
         userDetailViewController.modalPresentationStyle = .pageSheet
         present(userDetailViewController, animated: true)
     }

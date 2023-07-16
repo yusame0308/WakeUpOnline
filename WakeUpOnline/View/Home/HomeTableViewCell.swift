@@ -52,9 +52,9 @@ final class HomeTableViewCell: UITableViewCell {
     }
 
     // TableViewから呼ばれる
-    func render(with wakeUpInfo: WakeUpInfo) {
-        timeLabel.text = wakeUpInfo.timeText
-        infoCardView.setupTexts(with: wakeUpInfo)
+    func render(with user: User) {
+        timeLabel.text = user.wakeUpTimeList.stringValues(of: 0).time
+        infoCardView.setupTexts(with: user)
     }
 
 }

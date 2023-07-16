@@ -95,10 +95,10 @@ final class InfoCardView: UIView {
     }
 
     // Labelに文字を表示
-    func setupTexts(with wakeUpInfo: WakeUpInfo) {
-        userNameLabel.attributedText = wakeUpInfo.userName.attributedStringWithLineHeightMultiple(by: 0.85)
-        messageLabel.attributedText = wakeUpInfo.message.attributedStringWithLineHeightMultiple(by: 0.85)
-        recordLabel.attributedText = wakeUpInfo.recordText.attributedStringWithKern(1)
+    func setupTexts(with user: User) {
+        userNameLabel.attributedText = user.name.attributedStringWithLineHeightMultiple(by: 0.85)
+        messageLabel.attributedText = user.message.attributedStringWithLineHeightMultiple(by: 0.85)
+        recordLabel.attributedText = user.wakeUpLog.recordText.attributedStringWithKern(1)
     }
 
     required init?(coder: NSCoder) {

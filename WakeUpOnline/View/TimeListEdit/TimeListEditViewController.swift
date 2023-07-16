@@ -8,14 +8,14 @@
 import UIKit
 
 protocol TimeListEditViewControllerDelegate: AnyObject {
-    func saveButtonDidPressed(timeList: TimeList)
+    func saveButtonDidPressed(timeList: WakeUpTimeList)
 }
 
 final class TimeListEditViewController: UIViewController {
 
     weak var delegate: TimeListEditViewControllerDelegate?
 
-    private var timeList: TimeList
+    private var timeList: WakeUpTimeList
 
     // 選択中のセル番号
     private var selectedCellIndex = 0 {
@@ -54,7 +54,7 @@ final class TimeListEditViewController: UIViewController {
     // 保存ボタン
     private let saveButton = SaveButton()
 
-    init(timeList: TimeList) {
+    init(timeList: WakeUpTimeList) {
         self.timeList = timeList
 
         super.init(nibName: nil, bundle: nil)

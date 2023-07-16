@@ -16,7 +16,7 @@ final class TimeListView: UIView, UICollectionViewDataSource {
     // 起床時間リスト
     let timeCollectionView: UICollectionView
 
-    var timeList: TimeList // privateをつける
+    var timeList: WakeUpTimeList // privateをつける
 
     // layout
     private let horizontalItemCount = 7
@@ -24,7 +24,7 @@ final class TimeListView: UIView, UICollectionViewDataSource {
 
     private let cellID = "timeCollectionViewCellID"
 
-    init(width: CGFloat, timeList: TimeList) {
+    init(width: CGFloat, timeList: WakeUpTimeList) {
         // FlowLayout
         let flowLayout = UICollectionViewFlowLayout()
         let itemWidth = Int(width) / horizontalItemCount

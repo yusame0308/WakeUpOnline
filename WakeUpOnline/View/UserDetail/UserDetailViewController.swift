@@ -9,7 +9,7 @@ import UIKit
 
 final class UserDetailViewController: UIViewController {
 
-    private let wakeUpInfo: WakeUpInfo
+    private let user: User
 
     // アイコンの大きさ
     private static let iconWidth: CGFloat = 100
@@ -52,16 +52,16 @@ final class UserDetailViewController: UIViewController {
     }()
 
     // デイリーレコード
-    private lazy var dailyRecordView = DailyRecordView(width: view.bounds.width - 40, recordText: wakeUpInfo.recordText)
+    private lazy var dailyRecordView = DailyRecordView(width: view.bounds.width - 40, recordText: user.wakeUpLog.recordText)
 
-    init(wakeUpInfo: WakeUpInfo) {
-        self.wakeUpInfo = wakeUpInfo
+    init(user: User) {
+        self.user = user
 
         super.init(nibName: nil, bundle: nil)
 
-        timeLabel.text = wakeUpInfo.timeText
-        userNameLabel.attributedText = wakeUpInfo.userName.attributedStringWithLineHeightMultiple(by: 0.85, isCentered: true)
-        messageLabel.attributedText = wakeUpInfo.message.attributedStringWithLineHeightMultiple(by: 0.85, isCentered: true)
+        timeLabel.text = user.wakeUpTimeList.stringValues(of: 0).time
+        userNameLabel.attributedText = user.name.attributedStringWithLineHeightMultiple(by: 0.85, isCentered: true)
+        messageLabel.attributedText = user.message.attributedStringWithLineHeightMultiple(by: 0.85, isCentered: true)
     }
 
     required init?(coder: NSCoder) {

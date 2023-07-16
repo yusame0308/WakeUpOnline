@@ -59,9 +59,9 @@ final class ProfileEditViewController: UIViewController {
     // 保存ボタン
     private let saveButton = SaveButton()
 
-    init(wakeUpInfo: WakeUpInfo) {
-        userNameTextField.text = wakeUpInfo.userName
-        messageTextField.text = wakeUpInfo.message
+    init(user: User) {
+        userNameTextField.text = user.name
+        messageTextField.text = user.message
 
         super.init(nibName: nil, bundle: nil)
     }

@@ -1,5 +1,5 @@
 //
-//  TimeList.swift
+//  WakeUpTimeList.swift
 //  WakeUpOnline
 //
 //  Created by 小原宙 on 2023/06/29.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TimeList {
+struct WakeUpTimeList {
     var sunday: Int
     var monday: Int
     var tuesday: Int
@@ -16,7 +16,7 @@ struct TimeList {
     var friday: Int
     var saturday: Int
 
-    // index(1〜7)から画面表示用のデータを取得
+    // index(1〜7)から画面表示用の曜日・時間文字列を取得
     func stringValues(of index: Int) -> (weekDay: String, time: String) {
         let value = getValue(of: index)
         let timeString = timeText(of: value)
@@ -33,7 +33,7 @@ struct TimeList {
         }
     }
 
-    // index(1〜7)から画面表示用のデータを取得
+    // index(1〜7)からDateを取得
     func dateValue(of index: Int) -> Date {
         return convertToDate(from: getValue(of: index)) ?? Date()
     }
@@ -53,6 +53,8 @@ struct TimeList {
         default: monday = timeInt
         }
     }
+
+    // MARK: Private Method
 
     private func getValue(of index: Int) -> Int {
         switch index {
@@ -101,4 +103,4 @@ struct TimeList {
     }
 }
 
-let testTimeList = TimeList(sunday: 1030, monday: 800, tuesday: 800, wednesday: 930, thursday: 800, friday: 715, saturday: 1000)
+let testWakeUpTimeList = WakeUpTimeList(sunday: 1030, monday: 800, tuesday: 800, wednesday: 930, thursday: 800, friday: 715, saturday: 1000)

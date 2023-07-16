@@ -10,10 +10,10 @@ import FirebaseAuth
 
 final class MypageViewController: UIViewController {
 
-    private var wakeUpInfo: WakeUpInfo! {
+    private var user: User! {
         didSet {
-            userNameLabel.attributedText = wakeUpInfo.userName.attributedStringWithLineHeightMultiple(by: 0.85, isCentered: true)
-            messageLabel.attributedText = wakeUpInfo.message.attributedStringWithLineHeightMultiple(by: 0.85, isCentered: true)
+            userNameLabel.attributedText = user.name.attributedStringWithLineHeightMultiple(by: 0.85, isCentered: true)
+            messageLabel.attributedText = user.message.attributedStringWithLineHeightMultiple(by: 0.85, isCentered: true)
         }
     }
 
@@ -53,14 +53,14 @@ final class MypageViewController: UIViewController {
     private var profileView = UIView()
 
     // デイリーレコード
-    private lazy var dailyRecordView = DailyRecordView(width: view.bounds.width - 40, recordText: wakeUpInfo.recordText)
+    private lazy var dailyRecordView = DailyRecordView(width: view.bounds.width - 40, recordText: user.wakeUpLog.recordText)
 
     // 起床時間リスト
-    private lazy var timeListView = TimeListView(width: view.bounds.width - 40, timeList: testTimeList)
+    private lazy var timeListView = TimeListView(width: view.bounds.width - 40, timeList: user.wakeUpTimeList)
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        wakeUpInfo = wakeUpInfos[0]
+        user = users[0]
 
         view.backgroundColor = .white
 
@@ -105,7 +105,7 @@ final class MypageViewController: UIViewController {
 
     // プロフィール編集画面を表示
     @objc func showProfileEditView() {
-        let profileEditViewController = ProfileEditViewController(wakeUpInfo: wakeUpInfo)
+        let profileEditViewController = ProfileEditViewController(user: user)
         profileEditViewController.delegate = self
         // ハーフモーダルに設定
         if let sheet = profileEditViewController.sheetPresentationController {
@@ -116,7 +116,7 @@ final class MypageViewController: UIViewController {
 
     // 起床時間リスト編集画面を表示
     @objc func showTimeListEditView() {
-        let timeListEditViewController = TimeListEditViewController(timeList: testTimeList)
+        let timeListEditViewController = TimeListEditViewController(timeList: user.wakeUpTimeList)
         timeListEditViewController.delegate = self
         // ハーフモーダルに設定
         if let sheet = timeListEditViewController.sheetPresentationController {
@@ -153,7 +153,7 @@ extension MypageViewController: ProfileEditViewControllerDelegate {
 extension MypageViewController: TimeListEditViewControllerDelegate {
 
     // 起床時間リスト保存ボタンの処理
-    func saveButtonDidPressed(timeList: TimeList) {
+    func saveButtonDidPressed(timeList: WakeUpTimeList) {
         // リファクタリングする
         timeListView.timeList = timeList
         timeListView.timeCollectionView.reloadData()
