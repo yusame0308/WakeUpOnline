@@ -123,9 +123,7 @@ final class ProfileEditViewController: UIViewController {
 
         saveButton.addAction(UIAction { [weak self] _ in
             guard let self = self else { return }
-            Task {
-                await self.saveProfile()
-            }
+            self.saveProfile()
         }, for: .primaryActionTriggered)
     }
 
@@ -140,12 +138,14 @@ final class ProfileEditViewController: UIViewController {
     }
 
     // 保存ボタンの処理
-    private func saveProfile() async {
-        do {
-            try await delegate?.saveButtonDidPressed(userName: userNameTextField.text ?? "", message: messageTextField.text ?? "", iconImage: iconButton.imageView?.image)
-            self.dismiss(animated: true)
-        } catch {
-            print(error.localizedDescription)
+    private func saveProfile() {
+        Task {
+            do {
+                try await delegate?.saveButtonDidPressed(userName: userNameTextField.text ?? "", message: messageTextField.text ?? "", iconImage: iconButton.imageView?.image)
+                self.dismiss(animated: true)
+            } catch {
+                print(error.localizedDescription)
+            }
         }
     }
 

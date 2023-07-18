@@ -141,11 +141,7 @@ extension MypageViewController: ProfileEditViewControllerDelegate {
         request.displayName = userName
 //        request.photoURL = photoURL
 
-        do {
-            try await request.commitChanges()
-        } catch {
-            throw error
-        }
+        try await request.commitChanges()
     }
 
 }
