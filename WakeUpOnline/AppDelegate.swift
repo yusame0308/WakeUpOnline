@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseCore
 import FirebaseAuth
+import FirebaseFirestore
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -38,13 +39,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Task {
             do {
                 let authResult = try await Auth.auth().signInAnonymously()
-                print(authResult.user.uid)
+                print("Sign in userID: \(authResult.user.uid)")
+
+                // 新規登録の場合はFirestoreにUserを追加
+                if authResult.additionalUserInfo?.isNewUser ?? false {
+                    try addUser(userID: authResult.user.uid)
+                    print("Success add user")
+                }
             } catch {
                 print(error.localizedDescription)
             }
         }
 
         return true
+    }
+
+    // FirestoreにUserを追加
+    private func addUser(userID: String) throws {
+        let user = User(id: userID)
+        try Constant.userCollectionRef.document(userID).setData(from: user)
     }
 
     // MARK: UISceneSession Lifecycle

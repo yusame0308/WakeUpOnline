@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct WakeUpTimeList {
+struct WakeUpTimeList: Codable {
     var sunday: Int
     var monday: Int
     var tuesday: Int
@@ -15,6 +15,21 @@ struct WakeUpTimeList {
     var thursday: Int
     var friday: Int
     var saturday: Int
+
+    init(sunday: Int, monday: Int, tuesday: Int, wednesday: Int, thursday: Int, friday: Int, saturday: Int) {
+        self.sunday = sunday
+        self.monday = monday
+        self.tuesday = tuesday
+        self.wednesday = wednesday
+        self.thursday = thursday
+        self.friday = friday
+        self.saturday = saturday
+    }
+
+    // 値を指定しないinit
+    init() {
+        self.init(sunday: 800, monday: 800, tuesday: 800, wednesday: 800, thursday: 800, friday: 800, saturday: 800)
+    }
 
     // index(1〜7)から画面表示用の曜日・時間文字列を取得
     func stringValues(of index: Int) -> (weekDay: String, time: String) {
