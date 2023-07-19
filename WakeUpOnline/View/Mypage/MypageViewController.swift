@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestoreSwift
 
 final class MypageViewController: UIViewController {
 
@@ -137,11 +138,11 @@ extension MypageViewController: ProfileEditViewControllerDelegate {
 
         // FirebaseAuthのプロフィール更新
         guard let user = Auth.auth().currentUser else { return }
-        let request = user.createProfileChangeRequest()
-        request.displayName = userName
-//        request.photoURL = photoURL
-
-        try await request.commitChanges()
+        try await Constant.userCollectionRef.document(user.uid).updateData([
+            "name": userName,
+            "message": message,
+            "icon_url": ""
+        ])
     }
 
 }
