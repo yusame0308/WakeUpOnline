@@ -60,7 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // FirestoreにUserを追加
     private func addUser(userID: String) throws {
         let user = User(id: userID)
-        try Constant.userCollectionRef.document(userID).setData(from: user)
+        try FirestoreCollectionRef.users.document(userID).setData(from: user)
     }
 
     // MARK: UISceneSession Lifecycle

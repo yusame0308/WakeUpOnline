@@ -138,7 +138,7 @@ extension MypageViewController: ProfileEditViewControllerDelegate {
 
         // FirebaseAuthのプロフィール更新
         guard let user = Auth.auth().currentUser else { return }
-        try await Constant.userCollectionRef.document(user.uid).updateData([
+        try await FirestoreCollectionRef.users.document(user.uid).updateData([
             "name": userName,
             "message": message,
             "icon_url": ""
