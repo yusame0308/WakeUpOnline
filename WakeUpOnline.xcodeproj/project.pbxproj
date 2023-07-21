@@ -45,6 +45,7 @@
 		1AB455782A644BB0003BF2B0 /* WakeUpLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB455772A644BB0003BF2B0 /* WakeUpLog.swift */; };
 		1AB4557A2A67CACB003BF2B0 /* MyAppCheckProviderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB455792A67CACB003BF2B0 /* MyAppCheckProviderFactory.swift */; };
 		1AB4557F2A68D7FF003BF2B0 /* FirestoreCollectionRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB4557E2A68D7FF003BF2B0 /* FirestoreCollectionRef.swift */; };
+		1AB455812A68DB5F003BF2B0 /* FirestoreClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB455802A68DB5F003BF2B0 /* FirestoreClient.swift */; };
 		1ADB14222A51C69100BEEB1C /* TimeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADB14212A51C69100BEEB1C /* TimeCollectionViewCell.swift */; };
 		1ADB14262A52B0B700BEEB1C /* ProfileEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADB14252A52B0B700BEEB1C /* ProfileEditViewController.swift */; };
 		1ADB14292A52B34E00BEEB1C /* TimeListEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADB14282A52B34E00BEEB1C /* TimeListEditViewController.swift */; };
@@ -103,6 +104,7 @@
 		1AB455772A644BB0003BF2B0 /* WakeUpLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpLog.swift; sourceTree = "<group>"; };
 		1AB455792A67CACB003BF2B0 /* MyAppCheckProviderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAppCheckProviderFactory.swift; sourceTree = "<group>"; };
 		1AB4557E2A68D7FF003BF2B0 /* FirestoreCollectionRef.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreCollectionRef.swift; sourceTree = "<group>"; };
+		1AB455802A68DB5F003BF2B0 /* FirestoreClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreClient.swift; sourceTree = "<group>"; };
 		1ADB14212A51C69100BEEB1C /* TimeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCollectionViewCell.swift; sourceTree = "<group>"; };
 		1ADB14252A52B0B700BEEB1C /* ProfileEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewController.swift; sourceTree = "<group>"; };
 		1ADB14282A52B34E00BEEB1C /* TimeListEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeListEditViewController.swift; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 		1AB4557C2A68D59E003BF2B0 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				1AB455802A68DB5F003BF2B0 /* FirestoreClient.swift */,
 				1AB4557E2A68D7FF003BF2B0 /* FirestoreCollectionRef.swift */,
 			);
 			path = Network;
@@ -477,6 +480,7 @@
 				1ADB14262A52B0B700BEEB1C /* ProfileEditViewController.swift in Sources */,
 				1A651A012A44724000CBA380 /* DailyRecordView.swift in Sources */,
 				1A6BBE062A4C88DD0003D739 /* SpacerView.swift in Sources */,
+				1AB455812A68DB5F003BF2B0 /* FirestoreClient.swift in Sources */,
 				1ADB14222A51C69100BEEB1C /* TimeCollectionViewCell.swift in Sources */,
 				1A380A562A31720100D3C58F /* HomeTableViewCell.swift in Sources */,
 				1A380A632A31B25E00D3C58F /* InfoCardView.swift in Sources */,
