@@ -46,6 +46,7 @@
 		1AB4557A2A67CACB003BF2B0 /* MyAppCheckProviderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB455792A67CACB003BF2B0 /* MyAppCheckProviderFactory.swift */; };
 		1AB4557F2A68D7FF003BF2B0 /* FirestoreCollectionRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB4557E2A68D7FF003BF2B0 /* FirestoreCollectionRef.swift */; };
 		1AB455812A68DB5F003BF2B0 /* FirestoreClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB455802A68DB5F003BF2B0 /* FirestoreClient.swift */; };
+		1AB455842A6B04DC003BF2B0 /* UserList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB455832A6B04DC003BF2B0 /* UserList.swift */; };
 		1ADB14222A51C69100BEEB1C /* TimeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADB14212A51C69100BEEB1C /* TimeCollectionViewCell.swift */; };
 		1ADB14262A52B0B700BEEB1C /* ProfileEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADB14252A52B0B700BEEB1C /* ProfileEditViewController.swift */; };
 		1ADB14292A52B34E00BEEB1C /* TimeListEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADB14282A52B34E00BEEB1C /* TimeListEditViewController.swift */; };
@@ -105,6 +106,7 @@
 		1AB455792A67CACB003BF2B0 /* MyAppCheckProviderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAppCheckProviderFactory.swift; sourceTree = "<group>"; };
 		1AB4557E2A68D7FF003BF2B0 /* FirestoreCollectionRef.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreCollectionRef.swift; sourceTree = "<group>"; };
 		1AB455802A68DB5F003BF2B0 /* FirestoreClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreClient.swift; sourceTree = "<group>"; };
+		1AB455832A6B04DC003BF2B0 /* UserList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserList.swift; sourceTree = "<group>"; };
 		1ADB14212A51C69100BEEB1C /* TimeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCollectionViewCell.swift; sourceTree = "<group>"; };
 		1ADB14252A52B0B700BEEB1C /* ProfileEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewController.swift; sourceTree = "<group>"; };
 		1ADB14282A52B34E00BEEB1C /* TimeListEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeListEditViewController.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				1A380A582A31750F00D3C58F /* User.swift */,
+				1AB455832A6B04DC003BF2B0 /* UserList.swift */,
 				1A6BBE0E2A4D71D70003D739 /* WakeUpTimeList.swift */,
 				1AB455772A644BB0003BF2B0 /* WakeUpLog.swift */,
 			);
@@ -486,6 +489,7 @@
 				1A380A632A31B25E00D3C58F /* InfoCardView.swift in Sources */,
 				1A6519F82A41383900CBA380 /* UserDetailViewController.swift in Sources */,
 				1A380A612A319E2700D3C58F /* UIColor-Extension.swift in Sources */,
+				1AB455842A6B04DC003BF2B0 /* UserList.swift in Sources */,
 				1AB455782A644BB0003BF2B0 /* WakeUpLog.swift in Sources */,
 				1A380A242A30EC9900D3C58F /* HomeViewController.swift in Sources */,
 				1ADB14292A52B34E00BEEB1C /* TimeListEditViewController.swift in Sources */,
