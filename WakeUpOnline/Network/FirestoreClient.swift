@@ -6,9 +6,16 @@
 //
 
 import Foundation
+import FirebaseFirestore
 
 protocol FirestoreClientable {
+    func createUser()
+    func fetchUserList() async throws -> UserList
+    func updateUser()
+    func fetchIconImage() async throws
+    func uploadIconImage()
 }
 
-final class FirestoreClient: FirestoreClientable {
+final class FirestoreClient {
+    private let usersCollectionRef = Firestore.firestore().collection("users")
 }
