@@ -9,13 +9,19 @@ import Foundation
 import FirebaseFirestore
 
 protocol FirestoreClientable {
-    func createUser()
-    func fetchUserList() async throws -> UserList
-    func updateUser()
-    func fetchIconImage() async throws
-    func uploadIconImage()
+    func createUser(_ user: User) throws
+//    func fetchUserList() async throws -> UserList
+//    func updateUser()
+//    func fetchIconImage() async throws
+//    func uploadIconImage()
 }
 
-final class FirestoreClient {
+final class FirestoreClient: FirestoreClientable {
+
     private let usersCollectionRef = Firestore.firestore().collection("users")
+
+    func createUser(_ user: User) throws {
+        try usersCollectionRef.document(user.id).setData(from: user)
+    }
+
 }

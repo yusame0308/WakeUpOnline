@@ -46,7 +46,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
                 // 新規登録の場合はFirestoreにUserを追加
                 if authResult.additionalUserInfo?.isNewUser ?? false {
-                    try addUser(userID: authResult.user.uid)
+                    let user = User(id: authResult.user.uid)
+                    try FirestoreClient().createUser(user)
                     print("Success add user")
                 }
             } catch {
@@ -55,12 +56,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         return true
-    }
-
-    // FirestoreにUserを追加
-    private func addUser(userID: String) throws {
-        let user = User(id: userID)
-        try FirestoreCollectionRef.users.document(userID).setData(from: user)
     }
 
     // MARK: UISceneSession Lifecycle

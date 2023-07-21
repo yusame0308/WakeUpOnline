@@ -137,12 +137,12 @@ extension MypageViewController: ProfileEditViewControllerDelegate {
         iconImageView.image = iconImage
 
         // FirebaseAuthのプロフィール更新
-        guard let user = Auth.auth().currentUser else { return }
-        try await FirestoreCollectionRef.users.document(user.uid).updateData([
-            "name": userName,
-            "message": message,
-            "icon_url": ""
-        ])
+//        guard let user = Auth.auth().currentUser else { return }
+//        try await FirestoreCollectionRef.users.document(user.uid).updateData([
+//            "name": userName,
+//            "message": message,
+//            "icon_url": ""
+//        ])
     }
 
 }
