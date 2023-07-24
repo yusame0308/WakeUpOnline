@@ -24,4 +24,19 @@ extension Date {
         dateFormatter.timeStyle = .short
         return (dateFormatter.date(from: startDateString), dateFormatter.date(from: endDateString))
     }()
+
+    // 曜日の文字列を取得
+    var weekdayString: String {
+        let weekdayInt = Calendar.current.component(.weekday, from: self)
+        switch weekdayInt {
+        case 1: return "monday"
+        case 2: return "tuesday"
+        case 3: return "wednesday"
+        case 4: return "thursday"
+        case 5: return "friday"
+        case 6: return "saturday"
+        case 7: return "sunday"
+        default: return "monday"
+        }
+    }
 }
