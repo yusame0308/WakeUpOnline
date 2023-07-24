@@ -7,7 +7,6 @@
 
 import UIKit
 import FirebaseAuth
-import FirebaseFirestoreSwift
 
 final class MypageViewController: UIViewController {
 
