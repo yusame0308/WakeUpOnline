@@ -27,16 +27,12 @@ extension Date {
 
     // 曜日の文字列を取得
     var weekdayString: String {
+        // 曜日の数値
         let weekdayInt = Calendar.current.component(.weekday, from: self)
-        switch weekdayInt {
-        case 1: return "monday"
-        case 2: return "tuesday"
-        case 3: return "wednesday"
-        case 4: return "thursday"
-        case 5: return "friday"
-        case 6: return "saturday"
-        case 7: return "sunday"
-        default: return "monday"
-        }
+
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.locale = Locale(identifier: "en_US")
+
+        return calendar.weekdaySymbols[weekdayInt-1].lowercased()
     }
 }
