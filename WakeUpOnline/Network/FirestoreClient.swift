@@ -12,7 +12,7 @@ import FirebaseFirestoreSwift
 protocol FirestoreClientable {
     func createUser(_ user: User) throws
     func fetchUserList(startAfter lastSnapshot: DocumentSnapshot?) async throws -> [User]
-//    func updateUser()
+    func updateUser(id: String, data: [String: Any]) async throws
 //    func fetchIconImage() async throws
 //    func uploadIconImage()
 }
@@ -45,6 +45,11 @@ final class FirestoreClient: FirestoreClientable {
             return try queryDocumentSnapshot.data(as: User.self)
         }
         return userList
+    }
+
+    // ユーザを更新
+    func updateUser(id: String, data: [String: Any]) async throws {
+        try await usersCollectionRef.document(id).updateData(data)
     }
 
 }
