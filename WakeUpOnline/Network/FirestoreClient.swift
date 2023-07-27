@@ -8,18 +8,21 @@
 import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import FirebaseStorage
+import FirebaseAuth
 
 protocol FirestoreClientable {
     func createUser(_ user: User) throws
     func fetchUserList(startAfter lastSnapshot: DocumentSnapshot?) async throws -> [User]
     func updateUser(id: String, data: [String: Any]) async throws
 //    func fetchIconImage() async throws
-//    func uploadIconImage()
+    func uploadIconImage(data: Data) async throws
 }
 
 final class FirestoreClient: FirestoreClientable {
 
     private let usersCollectionRef = Firestore.firestore().collection("users")
+    private let storageRef = Storage.storage().reference()
 
     // ユーザを新規作成
     func createUser(_ user: User) throws {
@@ -50,6 +53,20 @@ final class FirestoreClient: FirestoreClientable {
     // ユーザを更新
     func updateUser(id: String, data: [String: Any]) async throws {
         try await usersCollectionRef.document(id).updateData(data)
+    }
+
+    // アイコン画像をアップロード
+    func uploadIconImage(data: Data) async throws {
+        // 画像の名前をuserIDにする
+        guard let userID = Auth.auth().currentUser?.uid else { return }
+        let imagePath = storageRef.child("icons/\(userID).jpg")
+
+        // ファイルのタイプを指定
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/jpeg"
+
+        // Storageにアップロード
+        _ = try await imagePath.putDataAsync(data, metadata: metadata)
     }
 
 }
