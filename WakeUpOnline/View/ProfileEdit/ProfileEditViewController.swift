@@ -142,6 +142,7 @@ final class ProfileEditViewController: UIViewController {
         Task {
             do {
                 try await delegate?.saveButtonDidPressed(userName: userNameTextField.text ?? "", message: messageTextField.text ?? "", iconImage: iconButton.imageView?.image)
+                try await FirestoreClient().uploadIconImage(data: iconButton.currentImage!.jpegData(compressionQuality: 1)!)
                 self.dismiss(animated: true)
             } catch {
                 print(error.localizedDescription)
