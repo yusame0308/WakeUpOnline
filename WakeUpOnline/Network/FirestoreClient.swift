@@ -15,7 +15,6 @@ protocol FirestoreClientable {
     func createUser(_ user: User) throws
     func fetchUserList(startAfter lastSnapshot: DocumentSnapshot?) async throws -> [User]
     func updateUser(id: String, data: [String: Any]) async throws
-//    func fetchIconImage() async throws
     func uploadIconImage(data: Data) async throws
 }
 
