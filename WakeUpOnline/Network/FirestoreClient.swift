@@ -13,6 +13,7 @@ import FirebaseAuth
 
 protocol FirestoreClientable {
     func createUser(_ user: User) throws
+    func fetchCurrentUser() async throws -> User
     func fetchUserList(startAfter lastSnapshot: DocumentSnapshot?) async throws -> [User]
     func updateUser(id: String, data: [String: Any]) async throws
     func uploadIconImage(data: Data) async throws
@@ -26,6 +27,19 @@ final class FirestoreClient: FirestoreClientable {
     // ユーザを新規作成
     func createUser(_ user: User) throws {
         try usersCollectionRef.document(user.id).setData(from: user)
+    }
+
+    // 自身のUserを取得
+    func fetchCurrentUser() async throws -> User {
+        guard let userID = Auth.auth().currentUser?.uid else {
+            fatalError()
+        }
+
+        // データを取得
+        let snapshot = try await usersCollectionRef.document(userID).getDocument()
+
+        let user = try snapshot.data(as: User.self)
+        return user
     }
 
     // ユーザリストを取得
