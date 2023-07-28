@@ -13,6 +13,7 @@ final class MypageViewController: UIViewController {
         didSet {
             userNameLabel.attributedText = user.name.attributedStringWithLineHeightMultiple(by: 0.85, isCentered: true)
             messageLabel.attributedText = user.message.attributedStringWithLineHeightMultiple(by: 0.85, isCentered: true)
+            iconImageView.setIconImage(with: URL(string: user.iconUrl))
         }
     }
 
@@ -52,14 +53,17 @@ final class MypageViewController: UIViewController {
     private var profileView = UIView()
 
     // デイリーレコード
-    private lazy var dailyRecordView = DailyRecordView(width: view.bounds.width - 40, recordText: user.wakeUpLog.recordText)
+    private lazy var dailyRecordView = DailyRecordView(width: view.bounds.width - 40, recordText: user?.wakeUpLog.recordText ?? WakeUpLog().recordText)
 
     // 起床時間リスト
-    private lazy var timeListView = TimeListView(width: view.bounds.width - 40, timeList: user.wakeUpTimeList)
+    private lazy var timeListView = TimeListView(width: view.bounds.width - 40, timeList: user?.wakeUpTimeList ?? WakeUpTimeList())
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        user = users[0]
+
+        Task {
+            user = try? await FirestoreClient().fetchCurrentUser()
+        }
 
         view.backgroundColor = .white
 

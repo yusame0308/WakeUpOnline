@@ -46,6 +46,8 @@
 		1AB4557A2A67CACB003BF2B0 /* MyAppCheckProviderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB455792A67CACB003BF2B0 /* MyAppCheckProviderFactory.swift */; };
 		1AB455812A68DB5F003BF2B0 /* FirestoreClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB455802A68DB5F003BF2B0 /* FirestoreClient.swift */; };
 		1AB455882A72DBBD003BF2B0 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 1AB455872A72DBBD003BF2B0 /* FirebaseStorage */; };
+		1AB4558C2A72F779003BF2B0 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1AB4558B2A72F779003BF2B0 /* Kingfisher */; };
+		1AB455912A72FBAF003BF2B0 /* UIImageView-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB455902A72FBAF003BF2B0 /* UIImageView-Extension.swift */; };
 		1ADB14222A51C69100BEEB1C /* TimeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADB14212A51C69100BEEB1C /* TimeCollectionViewCell.swift */; };
 		1ADB14262A52B0B700BEEB1C /* ProfileEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADB14252A52B0B700BEEB1C /* ProfileEditViewController.swift */; };
 		1ADB14292A52B34E00BEEB1C /* TimeListEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADB14282A52B34E00BEEB1C /* TimeListEditViewController.swift */; };
@@ -104,6 +106,7 @@
 		1AB455772A644BB0003BF2B0 /* WakeUpLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpLog.swift; sourceTree = "<group>"; };
 		1AB455792A67CACB003BF2B0 /* MyAppCheckProviderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAppCheckProviderFactory.swift; sourceTree = "<group>"; };
 		1AB455802A68DB5F003BF2B0 /* FirestoreClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreClient.swift; sourceTree = "<group>"; };
+		1AB455902A72FBAF003BF2B0 /* UIImageView-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView-Extension.swift"; sourceTree = "<group>"; };
 		1ADB14212A51C69100BEEB1C /* TimeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCollectionViewCell.swift; sourceTree = "<group>"; };
 		1ADB14252A52B0B700BEEB1C /* ProfileEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewController.swift; sourceTree = "<group>"; };
 		1ADB14282A52B34E00BEEB1C /* TimeListEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeListEditViewController.swift; sourceTree = "<group>"; };
@@ -117,6 +120,7 @@
 				1AAC3F6F2A601DA8002B7405 /* FirebaseAppCheck in Frameworks */,
 				1AAC3F712A601DA8002B7405 /* FirebaseAuth in Frameworks */,
 				1A380A5C2A317CAF00D3C58F /* SnapKit in Frameworks */,
+				1AB4558C2A72F779003BF2B0 /* Kingfisher in Frameworks */,
 				1AAC3F752A601DA8002B7405 /* FirebaseFirestoreSwift in Frameworks */,
 				1A811B7F2A36E4C700B63D83 /* RswiftLibrary in Frameworks */,
 				1AB455882A72DBBD003BF2B0 /* FirebaseStorage in Frameworks */,
@@ -262,6 +266,7 @@
 				1A811B8B2A3EEC6800B63D83 /* String-Extension.swift */,
 				1A6519FD2A44084300CBA380 /* UIView-Extension.swift */,
 				1A235E842A5668E800B3571A /* Date-Extension.swift */,
+				1AB455902A72FBAF003BF2B0 /* UIImageView-Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -333,6 +338,7 @@
 				1AAC3F722A601DA8002B7405 /* FirebaseFirestore */,
 				1AAC3F742A601DA8002B7405 /* FirebaseFirestoreSwift */,
 				1AB455872A72DBBD003BF2B0 /* FirebaseStorage */,
+				1AB4558B2A72F779003BF2B0 /* Kingfisher */,
 			);
 			productName = WakeUpOnline;
 			productReference = 1A380A1C2A30EC9900D3C58F /* WakeUpOnline.app */;
@@ -410,6 +416,7 @@
 				1A380A5A2A317CAF00D3C58F /* XCRemoteSwiftPackageReference "SnapKit" */,
 				1A811B7D2A36E4C700B63D83 /* XCRemoteSwiftPackageReference "R" */,
 				1AAC3F6B2A601DA8002B7405 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				1AB4558A2A72F779003BF2B0 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 1A380A1D2A30EC9900D3C58F /* Products */;
 			projectDirPath = "";
@@ -493,6 +500,7 @@
 				1A380A202A30EC9900D3C58F /* AppDelegate.swift in Sources */,
 				1A380A532A30F5E100D3C58F /* MypageViewController.swift in Sources */,
 				1A380A512A30F4CF00D3C58F /* MainTabBarController.swift in Sources */,
+				1AB455912A72FBAF003BF2B0 /* UIImageView-Extension.swift in Sources */,
 				1A811B8C2A3EEC6800B63D83 /* String-Extension.swift in Sources */,
 				1A380A222A30EC9900D3C58F /* SceneDelegate.swift in Sources */,
 				1AB455752A615A73003BF2B0 /* Constant.swift in Sources */,
@@ -867,6 +875,14 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		1AB4558A2A72F779003BF2B0 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -913,6 +929,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1AAC3F6B2A601DA8002B7405 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		1AB4558B2A72F779003BF2B0 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1AB4558A2A72F779003BF2B0 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
