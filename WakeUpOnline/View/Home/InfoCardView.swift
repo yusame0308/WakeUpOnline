@@ -99,6 +99,8 @@ final class InfoCardView: UIView {
         userNameLabel.attributedText = user.name.attributedStringWithLineHeightMultiple(by: 0.85)
         messageLabel.attributedText = user.message.attributedStringWithLineHeightMultiple(by: 0.85)
         recordLabel.attributedText = user.wakeUpLog.recordText.attributedStringWithKern(1)
+        iconImageView.setIconImage(with: URL(string: user.iconUrl))
+        iconImageView.image = iconImageView.image?.cropResizedSquare(InfoCardView.iconWidth)
     }
 
     required init?(coder: NSCoder) {

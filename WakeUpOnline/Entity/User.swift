@@ -40,7 +40,7 @@ struct User: Codable {
     }
 }
 
-let users = [
+let testUsers = [
     User(id: "test-id-1", name: "太郎", message: "がんばります", iconUrl: "", wakeUpTimeList: testWakeUpTimeList, wakeUpLog: testWakeUpLog),
     User(id: "test-id-2", name: "山田", message: "よろしくお願いします。", iconUrl: "", wakeUpTimeList: testWakeUpTimeList, wakeUpLog: testWakeUpLog),
     User(id: "test-id-3", name: "テストユーザー", message: "がんばります", iconUrl: "", wakeUpTimeList: testWakeUpTimeList, wakeUpLog: testWakeUpLog),

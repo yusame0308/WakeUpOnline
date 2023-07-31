@@ -10,6 +10,12 @@ import SnapKit
 
 final class HomeViewController: UIViewController {
 
+    private var users = [User]() {
+        didSet {
+            homeTableView.reloadData()
+        }
+    }
+
     private let cellID = "homeCellID"
 
     private lazy var homeTableView: UITableView = {
@@ -29,6 +35,15 @@ final class HomeViewController: UIViewController {
         config.image = UIImage(systemName: "arrow.clockwise", withConfiguration: UIImage.SymbolConfiguration(weight: .semibold))
         return UIButton(configuration: config)
     }()
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        Task {
+            let fetchUsers = try? await FirestoreClient().fetchUserList()
+            users = fetchUsers ?? []
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
