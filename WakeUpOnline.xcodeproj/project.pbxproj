@@ -24,6 +24,7 @@
 		1A380A5C2A317CAF00D3C58F /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1A380A5B2A317CAF00D3C58F /* SnapKit */; };
 		1A380A612A319E2700D3C58F /* UIColor-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A380A602A319E2700D3C58F /* UIColor-Extension.swift */; };
 		1A380A632A31B25E00D3C58F /* InfoCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A380A622A31B25E00D3C58F /* InfoCardView.swift */; };
+		1A4127C92A7AA5BA00205EAA /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4127C82A7AA5BA00205EAA /* HomeViewModel.swift */; };
 		1A6519F82A41383900CBA380 /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6519F72A41383900CBA380 /* UserDetailViewController.swift */; };
 		1A6519FB2A416FFF00CBA380 /* DailyLogCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6519FA2A416FFF00CBA380 /* DailyLogCollectionView.swift */; };
 		1A6519FE2A44084300CBA380 /* UIView-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6519FD2A44084300CBA380 /* UIView-Extension.swift */; };
@@ -91,6 +92,7 @@
 		1A380A582A31750F00D3C58F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1A380A602A319E2700D3C58F /* UIColor-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor-Extension.swift"; sourceTree = "<group>"; };
 		1A380A622A31B25E00D3C58F /* InfoCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCardView.swift; sourceTree = "<group>"; };
+		1A4127C82A7AA5BA00205EAA /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		1A6519F72A41383900CBA380 /* UserDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
 		1A6519FA2A416FFF00CBA380 /* DailyLogCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyLogCollectionView.swift; sourceTree = "<group>"; };
 		1A6519FD2A44084300CBA380 /* UIView-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView-Extension.swift"; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				1A380A5F2A319DE400D3C58F /* Extension */,
 				1A380A572A31742000D3C58F /* Entity */,
 				1AB4557C2A68D59E003BF2B0 /* Network */,
+				1A4127C72A7AA59500205EAA /* ViewModel */,
 				1A380A4F2A30F48E00D3C58F /* View */,
 				1AB455742A615A73003BF2B0 /* Constant.swift */,
 				1AB455792A67CACB003BF2B0 /* MyAppCheckProviderFactory.swift */,
@@ -269,6 +272,14 @@
 				1AB455902A72FBAF003BF2B0 /* UIImageView-Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		1A4127C72A7AA59500205EAA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1A4127C82A7AA5BA00205EAA /* HomeViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		1A6519F62A41372C00CBA380 /* UserDetail */ = {
@@ -496,6 +507,7 @@
 				1AB455782A644BB0003BF2B0 /* WakeUpLog.swift in Sources */,
 				1A380A242A30EC9900D3C58F /* HomeViewController.swift in Sources */,
 				1ADB14292A52B34E00BEEB1C /* TimeListEditViewController.swift in Sources */,
+				1A4127C92A7AA5BA00205EAA /* HomeViewModel.swift in Sources */,
 				1A235E812A560FFA00B3571A /* SaveButton.swift in Sources */,
 				1A380A202A30EC9900D3C58F /* AppDelegate.swift in Sources */,
 				1A380A532A30F5E100D3C58F /* MypageViewController.swift in Sources */,
