@@ -14,7 +14,7 @@ import FirebaseAuth
 protocol FirestoreClientable {
     func createUser(_ user: User) throws
     func fetchCurrentUser() async throws -> User
-    func fetchUserList(startAfter lastSnapshot: DocumentSnapshot?) async throws -> ([User], DocumentSnapshot)
+    func fetchUserList(startAfter lastSnapshot: DocumentSnapshot?) async throws -> (userList: [User], lastSnapshot: DocumentSnapshot)
     func updateUser(id: String, data: [String: Any]) async throws
     func uploadIconImage(data: Data) async throws
 }
@@ -43,7 +43,7 @@ final class FirestoreClient: FirestoreClientable {
     }
 
     // ユーザリストを取得
-    func fetchUserList(startAfter lastSnapshot: DocumentSnapshot? = nil) async throws -> ([User], DocumentSnapshot) {
+    func fetchUserList(startAfter lastSnapshot: DocumentSnapshot?) async throws -> (userList: [User], lastSnapshot: DocumentSnapshot) {
         // 今日の曜日
         let weekdayString = Date().weekdayString
         // 検索クエリ
