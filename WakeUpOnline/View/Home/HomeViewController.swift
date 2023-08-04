@@ -37,7 +37,7 @@ final class HomeViewController: UIViewController {
         }
     }
 
-    private let subscriptions = Set<AnyCancellable>()
+    private var subscriptions = Set<AnyCancellable>()
     private let viewModel: HomeViewModelable = HomeViewModel()
 
     override func viewDidLoad() {
@@ -47,6 +47,7 @@ final class HomeViewController: UIViewController {
 
         setupNavigationBar()
         setupLayout()
+        bind()
 
         Task {
             await viewModel.fetchUserList()
@@ -64,6 +65,14 @@ final class HomeViewController: UIViewController {
         homeTableView.snp.makeConstraints { make in
             make.edges.equalTo(view.safeAreaLayoutGuide)
         }
+    }
+
+    private func bind() {
+        viewModel.userListSubject
+            .sink { [weak self] userList in
+                self?.users = userList
+            }
+            .store(in: &subscriptions)
     }
 
 }
