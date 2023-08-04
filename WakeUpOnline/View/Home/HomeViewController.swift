@@ -7,16 +7,9 @@
 
 import UIKit
 import SnapKit
+import Combine
 
 final class HomeViewController: UIViewController {
-
-    private var users = [User]() {
-        didSet {
-            homeTableView.reloadData()
-        }
-    }
-
-    private let cellID = "homeCellID"
 
     private lazy var homeTableView: UITableView = {
         let tv = UITableView()
@@ -36,14 +29,16 @@ final class HomeViewController: UIViewController {
         return UIButton(configuration: config)
     }()
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    private let cellID = "homeCellID"
 
-        Task {
-            let fetchUsers = try? await FirestoreClient().fetchUserList()
-            users = fetchUsers ?? []
+    private var users = [User]() {
+        didSet {
+            homeTableView.reloadData()
         }
     }
+
+    private let subscriptions = Set<AnyCancellable>()
+    private let viewModel: HomeViewModelable = HomeViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +47,10 @@ final class HomeViewController: UIViewController {
 
         setupNavigationBar()
         setupLayout()
+
+        Task {
+            await viewModel.fetchUserList()
+        }
     }
 
     // NavigationBarの設定
