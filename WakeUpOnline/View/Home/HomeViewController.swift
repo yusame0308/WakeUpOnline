@@ -73,6 +73,18 @@ final class HomeViewController: UIViewController {
                 self?.users = userList
             }
             .store(in: &subscriptions)
+
+        viewModel.isLoadingSubject
+            .sink { isLoading in
+                print(isLoading)
+            }
+            .store(in: &subscriptions)
+
+        viewModel.errorAlertSubject
+            .sink { message in
+                print(message)
+            }
+            .store(in: &subscriptions)
     }
 
 }
