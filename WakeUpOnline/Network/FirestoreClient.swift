@@ -32,7 +32,7 @@ final class FirestoreClient: FirestoreClientable {
     // 自身のUserを取得
     func fetchCurrentUser() async throws -> User {
         guard let userID = Auth.auth().currentUser?.uid else {
-            fatalError()
+            throw FirestoreError.unauthorizedError
         }
 
         // データを取得
@@ -58,7 +58,7 @@ final class FirestoreClient: FirestoreClientable {
 
         // 返却するlastSnapshotを取得
         guard let fetchedLastSnapshot = snapshot.documents.last else {
-            fatalError()
+            throw FirestoreError.customError(message: "取得できるデータがありません。")
         }
 
         // User型にキャスト
@@ -77,7 +77,9 @@ final class FirestoreClient: FirestoreClientable {
     // アイコン画像をアップロード
     func uploadIconImage(data: Data) async throws {
         // 画像の名前をuserIDにする
-        guard let userID = Auth.auth().currentUser?.uid else { return }
+        guard let userID = Auth.auth().currentUser?.uid else {
+            throw FirestoreError.unauthorizedError
+        }
         let imagePath = storageRef.child("icons/\(userID).jpg")
 
         // ファイルのタイプを指定
