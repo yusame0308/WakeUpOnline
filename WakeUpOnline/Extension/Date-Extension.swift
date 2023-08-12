@@ -26,13 +26,21 @@ extension Date {
     }()
 
     // 曜日の文字列を取得
-    var weekdayString: String {
+    static let weekdayString: String = {
         // 曜日の数値
-        let weekdayInt = Calendar.current.component(.weekday, from: self)
-
+        let weekdayInt = Date.weekdayInt
         var calendar = Calendar(identifier: .gregorian)
         calendar.locale = Locale(identifier: "en_US")
 
         return calendar.weekdaySymbols[weekdayInt-1].lowercased()
-    }
+    }()
+
+    // 曜日の数値を取得
+    static let weekdayInt: Int = {
+        let today = Date()
+        let weekdayInt = Calendar.current.component(.weekday, from: today)
+        let hour = Calendar.current.component(.hour, from: today)
+        // 15時以前なら当日、15時以後なら翌日の曜日を返却
+        return hour < 15 ? weekdayInt : weekdayInt+1
+    }()
 }

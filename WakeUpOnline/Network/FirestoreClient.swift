@@ -45,7 +45,7 @@ final class FirestoreClient: FirestoreClientable {
     // ユーザリストを取得
     func fetchUserList(startAfter lastSnapshot: DocumentSnapshot?) async throws -> (userList: [User], lastSnapshot: DocumentSnapshot) {
         // 今日の曜日
-        let weekdayString = Date().weekdayString
+        let weekdayString = Date.weekdayString
         // 検索クエリ
         var query = usersCollectionRef.order(by: "wake_up_time_list.\(weekdayString)")
         // ページネーションを設定
