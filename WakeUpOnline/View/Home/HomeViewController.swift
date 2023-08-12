@@ -103,8 +103,10 @@ final class HomeViewController: UIViewController {
             .store(in: &subscriptions)
 
         viewModel.errorAlertSubject
-            .sink { message in
-                print(message)
+            .sink { [weak self] message in
+                let alert = UIAlertController(title: "エラー", message: message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default))
+                self?.present(alert, animated: true)
             }
             .store(in: &subscriptions)
     }
