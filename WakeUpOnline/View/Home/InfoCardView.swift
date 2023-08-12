@@ -94,8 +94,8 @@ final class InfoCardView: UIView {
         }
     }
 
-    // Labelに文字を表示
-    func setupTexts(with user: User) {
+    // 文字と画像を表示
+    func render(with user: User) {
         userNameLabel.attributedText = user.name.attributedStringWithLineHeightMultiple(by: 0.85)
         messageLabel.attributedText = user.message.attributedStringWithLineHeightMultiple(by: 0.85)
         recordLabel.attributedText = user.wakeUpLog.recordText.attributedStringWithKern(1)

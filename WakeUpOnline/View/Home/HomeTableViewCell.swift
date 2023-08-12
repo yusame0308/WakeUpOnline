@@ -54,7 +54,7 @@ final class HomeTableViewCell: UITableViewCell {
     // TableViewから呼ばれる
     func render(with user: User) {
         timeLabel.text = user.wakeUpTimeList.stringValues(of: Date.weekdayInt).time
-        infoCardView.setupTexts(with: user)
+        infoCardView.render(with: user)
     }
 
 }
