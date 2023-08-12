@@ -13,7 +13,7 @@ final class MypageViewController: UIViewController {
         didSet {
             userNameLabel.attributedText = user.name.attributedStringWithLineHeightMultiple(by: 0.85, isCentered: true)
             messageLabel.attributedText = user.message.attributedStringWithLineHeightMultiple(by: 0.85, isCentered: true)
-            iconImageView.setIconImage(with: URL(string: user.iconUrl))
+            iconImageView.setIconImage(with: URL(string: user.iconUrl), width: MypageViewController.iconWidth)
         }
     }
 

@@ -9,14 +9,14 @@ import UIKit
 import Kingfisher
 
 extension UIImageView {
-    func setIconImage(with url: URL?) {
-        let placeHolderImage = R.image.placeholder()?.cropResizedSquare(100)
+    func setIconImage(with url: URL?, width: CGFloat) {
+        let placeHolderImage = R.image.placeholder()?.cropResizedSquare(width)
         self.kf.setImage(with: url, placeholder: placeHolderImage) { result in
             switch result {
             case .success(let imageResult):
-                self.image = imageResult.image.cropResizedSquare(100)
+                self.image = imageResult.image.cropResizedSquare(width)
             case .failure(let err):
-                print(err)
+                debugPrint(err)
             }
         }
     }
