@@ -95,10 +95,11 @@ final class HomeViewController: UIViewController {
         viewModel.isLoadingSubject
             .sink { [weak self] isLoading in
                 self?.indicator.isHidden = !isLoading
-
-                isLoading
-                ? self?.indicator.startAnimating()
-                : self?.indicator.stopAnimating()
+                if isLoading {
+                    self?.indicator.startAnimating()
+                } else {
+                    self?.indicator.stopAnimating()
+                }
             }
             .store(in: &subscriptions)
 
