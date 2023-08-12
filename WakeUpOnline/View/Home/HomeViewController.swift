@@ -29,6 +29,18 @@ final class HomeViewController: UIViewController {
         return UIButton(configuration: config)
     }()
 
+    // インディケーター
+    private let indicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.style = .medium
+        indicator.color = .white
+        indicator.backgroundColor = .systemGray
+        indicator.layer.cornerRadius = 5.0
+        indicator.layer.opacity = 0.7
+        indicator.isHidden = true
+        return indicator
+    }()
+
     private let cellID = "homeCellID"
 
     private var users = [User]() {
@@ -61,9 +73,15 @@ final class HomeViewController: UIViewController {
 
     private func setupLayout() {
         view.addSubview(homeTableView)
+        view.addSubview(indicator)
 
         homeTableView.snp.makeConstraints { make in
             make.edges.equalTo(view.safeAreaLayoutGuide)
+        }
+
+        indicator.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.size.equalTo(CGSize(width: 100, height: 100))
         }
     }
 
@@ -75,8 +93,12 @@ final class HomeViewController: UIViewController {
             .store(in: &subscriptions)
 
         viewModel.isLoadingSubject
-            .sink { isLoading in
-                print(isLoading)
+            .sink { [weak self] isLoading in
+                self?.indicator.isHidden = !isLoading
+
+                isLoading
+                ? self?.indicator.startAnimating()
+                : self?.indicator.stopAnimating()
             }
             .store(in: &subscriptions)
 
