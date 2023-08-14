@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct WakeUpTimeList: Codable {
+struct WakeUpTimeList: Codable, Hashable {
     var sunday: Int
     var monday: Int
     var tuesday: Int

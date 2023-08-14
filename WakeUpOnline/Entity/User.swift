@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct User: Codable {
+struct User: Codable, Hashable {
     let id: String // ID
     let name: String // 名前
     let message: String // メッセージ

@@ -11,10 +11,12 @@ import Combine
 
 final class HomeViewController: UIViewController {
 
+    private typealias DataSource = UITableViewDiffableDataSource<Int, User>
+    private typealias Snapshot = NSDiffableDataSourceSnapshot<Int, User>
+
     private lazy var homeTableView: UITableView = {
         let tv = UITableView()
         tv.delegate = self
-        tv.dataSource = self
         tv.separatorColor = .clear
         tv.showsVerticalScrollIndicator = false
         tv.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
@@ -42,12 +44,7 @@ final class HomeViewController: UIViewController {
     }()
 
     private let cellID = "homeCellID"
-
-    private var users = [User]() {
-        didSet {
-            homeTableView.reloadData()
-        }
-    }
+    private lazy var dataSource = configureDataSource()
 
     private var subscriptions = Set<AnyCancellable>()
     private let viewModel: HomeViewModelable = HomeViewModel()
@@ -88,7 +85,7 @@ final class HomeViewController: UIViewController {
     private func bind() {
         viewModel.userListSubject
             .sink { [weak self] userList in
-                self?.users = userList
+                self?.createSnapshot(with: userList)
             }
             .store(in: &subscriptions)
 
@@ -112,24 +109,31 @@ final class HomeViewController: UIViewController {
             .store(in: &subscriptions)
     }
 
+    private func configureDataSource() -> DataSource {
+        return UITableViewDiffableDataSource(tableView: homeTableView) { [weak self] tableView, indexPath, user in
+            guard let self = self else { return nil }
+
+            let cell = tableView.dequeueReusableCell(withIdentifier: self.cellID, for: indexPath) as! HomeTableViewCell // swiftlint:disable:this force_cast
+            cell.selectionStyle = .none
+            cell.render(with: user)
+            return cell
+        }
+    }
+
+    private func createSnapshot(with userList: [User]) {
+        var snapshot = Snapshot()
+        snapshot.appendSections([0])
+        snapshot.appendItems(userList)
+        dataSource.apply(snapshot, animatingDifferences: true)
+    }
+
 }
 
-extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        users.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! HomeTableViewCell // swiftlint:disable:this force_cast
-        cell.selectionStyle = .none
-        cell.render(with: users[indexPath.row])
-        return cell
-    }
+extension HomeViewController: UITableViewDelegate {
 
     // Cellを押してユーザ詳細画面を表示
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let userDetailViewController = UserDetailViewController(user: users[indexPath.row])
+        let userDetailViewController = UserDetailViewController(user: viewModel.userListSubject.value[indexPath.row])
         userDetailViewController.modalPresentationStyle = .pageSheet
         present(userDetailViewController, animated: true)
     }

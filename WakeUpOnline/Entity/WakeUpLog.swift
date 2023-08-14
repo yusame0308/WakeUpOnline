@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct WakeUpLog: Codable {
+struct WakeUpLog: Codable, Hashable {
     let dates: [Date] // 起床した日付リスト
     let totalCount: Int // 通算記録
     let consecutiveCount: Int // 連続記録
