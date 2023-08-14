@@ -14,6 +14,7 @@ protocol HomeViewModelable {
     var showUserDetailViewSubject: PassthroughSubject<User, Never> { get }
     var errorAlertSubject: PassthroughSubject<String, Never> { get }
     func fetchUserList() async
+    func reloadUserList() async
     func handleDidSelectRowAt(_ indexPath: IndexPath)
 }
 
@@ -68,6 +69,14 @@ extension HomeViewModel: HomeViewModelable {
         }
     }
 
+    // ユーザリストを再取得
+    func reloadUserList() async {
+        lastSnapshot = nil
+        userListSubject.value = []
+        await fetchUserList()
+    }
+
+    // cellタップで詳細画面へ遷移
     func handleDidSelectRowAt(_ indexPath: IndexPath) {
         showUserDetailViewSubject.send(userListSubject.value[indexPath.row])
     }

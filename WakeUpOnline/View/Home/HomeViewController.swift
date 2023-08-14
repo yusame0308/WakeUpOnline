@@ -56,6 +56,7 @@ final class HomeViewController: UIViewController {
 
         setupNavigationBar()
         setupLayout()
+        setupAction()
         bind()
 
         Task {
@@ -80,6 +81,14 @@ final class HomeViewController: UIViewController {
             make.center.equalToSuperview()
             make.size.equalTo(CGSize(width: 100, height: 100))
         }
+    }
+
+    private func setupAction() {
+        reloadButton.addAction(UIAction { [weak self] _ in
+            Task {
+                await self?.viewModel.reloadUserList()
+            }
+        }, for: .primaryActionTriggered)
     }
 
     private func bind() {
