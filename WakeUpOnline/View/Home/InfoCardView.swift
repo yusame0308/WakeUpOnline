@@ -16,9 +16,6 @@ final class InfoCardView: UIView {
     // アイコン
     private let iconImageView: UIImageView = {
         let imageView = UIImageView()
-        // 画像を正方形にリサイズ
-        let image = Bool.random() ? R.image.placeholder() : R.image.testImage2()
-        imageView.image = image?.cropResizedSquare(iconWidth)
         imageView.layer.cornerRadius = iconWidth * 0.5
         imageView.clipsToBounds = true
         return imageView
