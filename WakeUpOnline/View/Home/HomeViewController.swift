@@ -100,6 +100,14 @@ final class HomeViewController: UIViewController {
             }
             .store(in: &subscriptions)
 
+        viewModel.showUserDetailViewSubject
+            .sink { [weak self] user in
+                let userDetailViewController = UserDetailViewController(user: user)
+                userDetailViewController.modalPresentationStyle = .pageSheet
+                self?.present(userDetailViewController, animated: true)
+            }
+            .store(in: &subscriptions)
+
         viewModel.errorAlertSubject
             .sink { [weak self] message in
                 let alert = UIAlertController(title: "エラー", message: message, preferredStyle: .alert)
@@ -133,9 +141,7 @@ extension HomeViewController: UITableViewDelegate {
 
     // Cellを押してユーザ詳細画面を表示
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let userDetailViewController = UserDetailViewController(user: viewModel.userListSubject.value[indexPath.row])
-        userDetailViewController.modalPresentationStyle = .pageSheet
-        present(userDetailViewController, animated: true)
+        viewModel.handleDidSelectRowAt(indexPath)
     }
 
 }

@@ -11,14 +11,17 @@ import FirebaseFirestore
 protocol HomeViewModelable {
     var userListSubject: CurrentValueSubject<[User], Never> { get }
     var isLoadingSubject: PassthroughSubject<Bool, Never> { get }
+    var showUserDetailViewSubject: PassthroughSubject<User, Never> { get }
     var errorAlertSubject: PassthroughSubject<String, Never> { get }
     func fetchUserList() async
+    func handleDidSelectRowAt(_ indexPath: IndexPath)
 }
 
 final class HomeViewModel {
 
     var userListSubject = CurrentValueSubject<[User], Never>([])
     var isLoadingSubject = PassthroughSubject<Bool, Never>()
+    var showUserDetailViewSubject = PassthroughSubject<User, Never>()
     var errorAlertSubject = PassthroughSubject<String, Never>()
 
     private let firestoreClient: FirestoreClientable
@@ -63,6 +66,10 @@ extension HomeViewModel: HomeViewModelable {
             await setupLoading(false)
             await showErrorAlert(error.localizedDescription)
         }
+    }
+
+    func handleDidSelectRowAt(_ indexPath: IndexPath) {
+        showUserDetailViewSubject.send(userListSubject.value[indexPath.row])
     }
 
 }
