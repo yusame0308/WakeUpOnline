@@ -25,8 +25,6 @@ final class UserDetailViewController: UIViewController {
     // アイコン
     private let iconImageView: UIImageView = {
         let imageView = UIImageView()
-        // 画像を正方形にリサイズ
-        imageView.image = R.image.testImage1()?.cropResizedSquare(iconWidth)
         imageView.layer.cornerRadius = iconWidth * 0.5
         imageView.clipsToBounds = true
         return imageView
@@ -59,9 +57,10 @@ final class UserDetailViewController: UIViewController {
 
         super.init(nibName: nil, bundle: nil)
 
-        timeLabel.text = user.wakeUpTimeList.stringValues(of: 0).time
+        timeLabel.text = user.wakeUpTimeList.stringValues(of: Date.weekdayInt).time
         userNameLabel.attributedText = user.name.attributedStringWithLineHeightMultiple(by: 0.85, isCentered: true)
         messageLabel.attributedText = user.message.attributedStringWithLineHeightMultiple(by: 0.85, isCentered: true)
+        iconImageView.setIconImage(with: URL(string: user.iconUrl), width: UserDetailViewController.iconWidth)
     }
 
     required init?(coder: NSCoder) {
