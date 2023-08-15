@@ -54,7 +54,7 @@ final class FirestoreClient: FirestoreClientable {
         }
 
         // データを取得
-        let snapshot = try await query.limit(to: 20).getDocuments()
+        let snapshot = try await query.limit(to: 10).getDocuments()
 
         // 返却するlastSnapshotを取得
         guard let fetchedLastSnapshot = snapshot.documents.last else {
