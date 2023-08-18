@@ -7,6 +7,7 @@
 
 import Combine
 
+// 使われていない
 extension Publisher {
     public func tryAwaitMap<T>(_ transform: @escaping (Self.Output) async throws -> T) -> Publishers.FlatMap<Future<T, Error>, Self> {
         flatMap { value in
@@ -15,8 +16,7 @@ extension Publisher {
                     do {
                         let result = try await transform(value)
                         promise(.success(result))
-                    }
-                    catch {
+                    } catch {
                         promise(.failure(error))
                     }
                 }
