@@ -27,6 +27,7 @@
 		1A4127C92A7AA5BA00205EAA /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4127C82A7AA5BA00205EAA /* HomeViewModel.swift */; };
 		1A4127CE2A831DEC00205EAA /* FirestoreError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4127CD2A831DEC00205EAA /* FirestoreError.swift */; };
 		1A588FB52A8C45D0002DB446 /* MypageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A588FB42A8C45D0002DB446 /* MypageViewModel.swift */; };
+		1A588FB82A8FBDCD002DB446 /* Publisher-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A588FB72A8FBDCD002DB446 /* Publisher-Extension.swift */; };
 		1A6519F82A41383900CBA380 /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6519F72A41383900CBA380 /* UserDetailViewController.swift */; };
 		1A6519FB2A416FFF00CBA380 /* DailyLogCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6519FA2A416FFF00CBA380 /* DailyLogCollectionView.swift */; };
 		1A6519FE2A44084300CBA380 /* UIView-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6519FD2A44084300CBA380 /* UIView-Extension.swift */; };
@@ -97,6 +98,7 @@
 		1A4127C82A7AA5BA00205EAA /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		1A4127CD2A831DEC00205EAA /* FirestoreError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreError.swift; sourceTree = "<group>"; };
 		1A588FB42A8C45D0002DB446 /* MypageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageViewModel.swift; sourceTree = "<group>"; };
+		1A588FB72A8FBDCD002DB446 /* Publisher-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher-Extension.swift"; sourceTree = "<group>"; };
 		1A6519F72A41383900CBA380 /* UserDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
 		1A6519FA2A416FFF00CBA380 /* DailyLogCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyLogCollectionView.swift; sourceTree = "<group>"; };
 		1A6519FD2A44084300CBA380 /* UIView-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView-Extension.swift"; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				1A6519FD2A44084300CBA380 /* UIView-Extension.swift */,
 				1A235E842A5668E800B3571A /* Date-Extension.swift */,
 				1AB455902A72FBAF003BF2B0 /* UIImageView-Extension.swift */,
+				1A588FB72A8FBDCD002DB446 /* Publisher-Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -504,6 +507,7 @@
 				1ADB14262A52B0B700BEEB1C /* ProfileEditViewController.swift in Sources */,
 				1A651A012A44724000CBA380 /* DailyRecordView.swift in Sources */,
 				1A6BBE062A4C88DD0003D739 /* SpacerView.swift in Sources */,
+				1A588FB82A8FBDCD002DB446 /* Publisher-Extension.swift in Sources */,
 				1AB455812A68DB5F003BF2B0 /* FirestoreClient.swift in Sources */,
 				1ADB14222A51C69100BEEB1C /* TimeCollectionViewCell.swift in Sources */,
 				1A380A562A31720100D3C58F /* HomeTableViewCell.swift in Sources */,
