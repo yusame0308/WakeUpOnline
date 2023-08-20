@@ -8,8 +8,7 @@
 import Combine
 
 protocol MypageViewModelProtocol {
-    var currentUserSubject: CurrentValueSubject<User, Never> { get }
-    func transform(input: MypageViewModelInput) -> MypageViewModelOutput
+    func transform(input: MypageViewModelInput, subscriptions: inout Set<AnyCancellable>) -> MypageViewModelOutput
 }
 
 struct MypageViewModelInput {
@@ -19,19 +18,18 @@ struct MypageViewModelInput {
 }
 
 struct MypageViewModelOutput {
-    let onFetchCurrentUser: AnyPublisher<User, Never>
-    let onPresentProfileEditView: AnyPublisher<User, Never>
-    let onPresentTimeListEditView: AnyPublisher<User, Never>
-    let onShowErrorAlert: AnyPublisher<String, Never>
+    let currentUser: AnyPublisher<User, Never>
+    let presentProfileEditView: AnyPublisher<User, Never>
+    let presentTimeListEditView: AnyPublisher<User, Never>
+    let showErrorAlert: AnyPublisher<String, Never>
 }
 
 struct MypageViewModel: MypageViewModelProtocol {
 
     // Stateとしてまとめて定義する？
-    var currentUserSubject = CurrentValueSubject<User, Never>(User(id: ""))
+    private var currentUserSubject = CurrentValueSubject<User?, Never>(nil)
 
     private let firestoreClient: FirestoreClientable
-//    private var subscriptions = Set<AnyCancellable>()
 
     init() {
         self.init(firestoreClient: FirestoreClient())
@@ -41,35 +39,13 @@ struct MypageViewModel: MypageViewModelProtocol {
         self.firestoreClient = firestoreClient
     }
 
-    func transform(input: MypageViewModelInput) -> MypageViewModelOutput {
-//        let didLoad = input
-//            .viewDidLoad
-//            .share()
-
-//        let currentUser = didLoad
-//            .compactMap {
-//                Task {
-//                    do {
-//                        let user = try await firestoreClient.fetchCurrentUser()
-//                        currentUserSubject.send(user)
-//                    } catch {
-//                        errorAlertSubject.send(error.localizedDescription)
-//                    }
-//                }
-//            }
-
-//            .flatMap { _ in
-//                var currentUser: User
-//                let t = Task {
-//                    let c = try await firestoreClient.fetchCurrentUser()
-//                }
-//                return "aaa".publisher.eraseToAnyPublisher()
-//            }
-
+    func transform(input: MypageViewModelInput, subscriptions: inout Set<AnyCancellable>) -> MypageViewModelOutput {
         let errorAlertSubject = PassthroughSubject<String, Never>()
 
-        _ = input.viewDidLoad
-            .sink { _ in
+        // inputのviewDidLoadが呼ばれたらFirestoreからユーザを取得する
+        input
+            .viewDidLoad
+            .sink {
                 Task {
                     do {
                         let user = try await firestoreClient.fetchCurrentUser()
@@ -79,42 +55,26 @@ struct MypageViewModel: MypageViewModelProtocol {
                     }
                 }
             }
+            .store(in: &subscriptions)
 
+        // compactMapでnilを除去
         let currentUser = currentUserSubject
-            .map { $0 }
-
-        let errorAlert = errorAlertSubject
-            .map { $0 }
+            .compactMap { $0 }
 
         let profileViewTapped = input
             .profileViewTapped
-            .share()
-            .map { currentUserSubject.value }
+            .compactMap { currentUserSubject.value }
 
         let timeListViewTapped = input
             .timeListViewTapped
-            .share()
-            .map { currentUserSubject.value }
+            .compactMap { currentUserSubject.value }
 
         return .init(
-            onFetchCurrentUser: currentUser.eraseToAnyPublisher(),
-            onPresentProfileEditView: profileViewTapped.eraseToAnyPublisher(),
-            onPresentTimeListEditView: timeListViewTapped.eraseToAnyPublisher(),
-            onShowErrorAlert: errorAlert.eraseToAnyPublisher()
+            currentUser: currentUser.eraseToAnyPublisher(),
+            presentProfileEditView: profileViewTapped.eraseToAnyPublisher(),
+            presentTimeListEditView: timeListViewTapped.eraseToAnyPublisher(),
+            showErrorAlert: errorAlertSubject.eraseToAnyPublisher()
         )
     }
-
-//    func fetchCurrentUser() -> Future<User, Error> {
-//        return Future() { promise in
-//            Task {
-//                do {
-//                    let user = try await firestoreClient.fetchCurrentUser()
-//                    promise(.success(user))
-//                } catch {
-//                    promise(.failure(error))
-//                }
-//            }
-//        }
-//    }
 
 }

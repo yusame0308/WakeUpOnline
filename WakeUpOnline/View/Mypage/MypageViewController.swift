@@ -6,19 +6,9 @@
 //
 
 import UIKit
+import Combine
 
 final class MypageViewController: UIViewController {
-
-    private var user: User! {
-        didSet {
-            userNameLabel.attributedText = user.name.attributedStringWithLineHeightMultiple(by: 0.85, isCentered: true)
-            messageLabel.attributedText = user.message.attributedStringWithLineHeightMultiple(by: 0.85, isCentered: true)
-            iconImageView.setIconImage(with: URL(string: user.iconUrl), width: MypageViewController.iconWidth)
-        }
-    }
-
-    // アイコンの大きさ
-    private static let iconWidth: CGFloat = 100
 
     // アイコン
     private let iconImageView: UIImageView = {
@@ -51,22 +41,34 @@ final class MypageViewController: UIViewController {
     private var profileView = UIView()
 
     // デイリーレコード
-    private lazy var dailyRecordView = DailyRecordView(width: view.bounds.width - 40, recordText: user?.wakeUpLog.recordText ?? WakeUpLog().recordText)
+    private lazy var dailyRecordView = DailyRecordView(width: view.bounds.width - 40)
 
     // 起床時間リスト
-    private lazy var timeListView = TimeListView(width: view.bounds.width - 40, timeList: user?.wakeUpTimeList ?? WakeUpTimeList())
+    private lazy var timeListView = TimeListView(width: view.bounds.width - 40)
+
+    // アイコンの大きさ
+    private static let iconWidth: CGFloat = 100
+
+    // ViewModel
+    private let viewModel: MypageViewModelProtocol = MypageViewModel()
+    private var cancellables = Set<AnyCancellable>()
+
+    // Subject
+    private var viewDidLoadSubject = PassthroughSubject<Void, Never>()
+    private var profileViewTappedSubject = PassthroughSubject<Void, Never>()
+    private var timeListViewTappedSubject = PassthroughSubject<Void, Never>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        Task {
-            user = try? await FirestoreClient().fetchCurrentUser()
-        }
-
         view.backgroundColor = .white
+        timeListView.timeCollectionView.allowsSelection = false
 
         setupLayout()
         setupGesture()
+        bind()
+
+        viewDidLoadSubject.send()
     }
 
     private func setupLayout() {
@@ -104,26 +106,83 @@ final class MypageViewController: UIViewController {
         timeListView.addGestureRecognizer(timeListViewTapGestureRecognizer)
     }
 
+    private func bind() {
+        let output = viewModel.transform(
+            input: .init(
+                viewDidLoad: viewDidLoadSubject.eraseToAnyPublisher(),
+                profileViewTapped: profileViewTappedSubject.eraseToAnyPublisher(),
+                timeListViewTapped: timeListViewTappedSubject.eraseToAnyPublisher()
+            ),
+            subscriptions: &cancellables
+        )
+
+        output
+            .currentUser
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] user in
+                print("Bind, onFetchCurrentUser")
+                self?.render(with: user)
+            }
+            .store(in: &cancellables)
+
+        output
+            .presentProfileEditView
+            .receive(on: DispatchQueue.main)
+            .sink { user in
+                print("Bind, onPresentProfileEditView")
+                print(user)
+            }
+            .store(in: &cancellables)
+
+        output
+            .presentTimeListEditView
+            .receive(on: DispatchQueue.main)
+            .sink { user in
+                print("Bind, onPresentTimeListEditView")
+                print(user)
+            }
+            .store(in: &cancellables)
+
+        output
+            .showErrorAlert
+            .receive(on: DispatchQueue.main)
+            .sink { message in
+                print("Bind, onShowErrorAlert")
+                print(message)
+            }
+            .store(in: &cancellables)
+    }
+
+    private func render(with user: User) {
+        userNameLabel.attributedText = user.name.attributedStringWithLineHeightMultiple(by: 0.85, isCentered: true)
+        messageLabel.attributedText = user.message.attributedStringWithLineHeightMultiple(by: 0.85, isCentered: true)
+        iconImageView.setIconImage(with: URL(string: user.iconUrl), width: MypageViewController.iconWidth)
+        dailyRecordView.setRecordText(user.wakeUpLog.recordText)
+        timeListView.setTimeList(user.wakeUpTimeList)
+    }
+
     // プロフィール編集画面を表示
     @objc func showProfileEditView() {
-        let profileEditViewController = ProfileEditViewController(user: user)
-        profileEditViewController.delegate = self
-        // ハーフモーダルに設定
-        if let sheet = profileEditViewController.sheetPresentationController {
-            sheet.detents = [.medium()]
-        }
-        present(profileEditViewController, animated: true)
+        profileViewTappedSubject.send()
+//        let profileEditViewController = ProfileEditViewController(user: user)
+//        profileEditViewController.delegate = self
+//        // ハーフモーダルに設定
+//        if let sheet = profileEditViewController.sheetPresentationController {
+//            sheet.detents = [.medium()]
+//        }
+//        present(profileEditViewController, animated: true)
     }
 
     // 起床時間リスト編集画面を表示
     @objc func showTimeListEditView() {
-        let timeListEditViewController = TimeListEditViewController(timeList: user.wakeUpTimeList)
-        timeListEditViewController.delegate = self
-        // ハーフモーダルに設定
-        if let sheet = timeListEditViewController.sheetPresentationController {
-            sheet.detents = [.medium()]
-        }
-        present(timeListEditViewController, animated: true)
+        timeListViewTappedSubject.send()
+//        let timeListEditViewController = TimeListEditViewController(timeList: user.wakeUpTimeList)
+//        timeListEditViewController.delegate = self
+//        // ハーフモーダルに設定
+//        if let sheet = timeListEditViewController.sheetPresentationController {
+//            sheet.detents = [.medium()]
+//        }
+//        present(timeListEditViewController, animated: true)
     }
 
 }
@@ -152,8 +211,8 @@ extension MypageViewController: TimeListEditViewControllerDelegate {
     // 起床時間リスト保存ボタンの処理
     func saveButtonDidPressed(timeList: WakeUpTimeList) {
         // リファクタリングする
-        timeListView.timeList = timeList
-        timeListView.timeCollectionView.reloadData()
+//        timeListView.timeList = timeList
+//        timeListView.timeCollectionView.reloadData()
     }
 
 }
