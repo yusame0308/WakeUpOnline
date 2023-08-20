@@ -37,10 +37,9 @@ final class DailyRecordView: UIView {
         return view
     }()
 
-    init(width: CGFloat, recordText: String) {
+    init(width: CGFloat) {
         itemWidth = width / 2 - 30
         dailyLogCollectionView = DailyLogCollectionView(width: itemWidth)
-        recordLabel.attributedText = recordText.attributedStringWithKern(1)
 
         super.init(frame: .zero)
 
@@ -75,6 +74,10 @@ final class DailyRecordView: UIView {
             make.height.equalTo(baseStackView)
             make.center.equalToSuperview()
         }
+    }
+
+    func setRecordText(_ text: String) {
+        recordLabel.attributedText = text.attributedStringWithKern(1)
     }
 
     required init?(coder: NSCoder) {

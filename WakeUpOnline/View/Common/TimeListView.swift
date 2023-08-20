@@ -16,7 +16,7 @@ final class TimeListView: UIView, UICollectionViewDataSource {
     // 起床時間リスト
     let timeCollectionView: UICollectionView
 
-    var timeList: WakeUpTimeList // privateをつける
+    private var timeList = WakeUpTimeList()
 
     // layout
     private let horizontalItemCount = 7
@@ -24,7 +24,7 @@ final class TimeListView: UIView, UICollectionViewDataSource {
 
     private let cellID = "timeCollectionViewCellID"
 
-    init(width: CGFloat, timeList: WakeUpTimeList) {
+    init(width: CGFloat) {
         // FlowLayout
         let flowLayout = UICollectionViewFlowLayout()
         let itemWidth = Int(width) / horizontalItemCount
@@ -32,7 +32,6 @@ final class TimeListView: UIView, UICollectionViewDataSource {
         flowLayout.minimumInteritemSpacing = 0
 
         self.timeCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-        self.timeList = timeList
 
         super.init(frame: .zero)
 
@@ -59,6 +58,11 @@ final class TimeListView: UIView, UICollectionViewDataSource {
         timeCollectionView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+    }
+
+    func setTimeList(_ timeList: WakeUpTimeList) {
+        self.timeList = timeList
+        timeCollectionView.reloadData()
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

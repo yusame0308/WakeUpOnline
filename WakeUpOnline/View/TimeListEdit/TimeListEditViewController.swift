@@ -35,7 +35,7 @@ final class TimeListEditViewController: UIViewController {
     }()
 
     // 起床時間リスト
-    private lazy var timeListView = TimeListView(width: view.bounds.width - 40, timeList: timeList)
+    private lazy var timeListView = TimeListView(width: view.bounds.width - 40)
 
     // 時間ピッカー
     private let timePicker: UIDatePicker = {
@@ -69,6 +69,7 @@ final class TimeListEditViewController: UIViewController {
 
         view.backgroundColor = .white
 
+        timeListView.setTimeList(timeList)
         // セルを選択状態にする
         timeListView.timeCollectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .centeredHorizontally)
         timeListView.timeCollectionView.delegate = self
@@ -113,7 +114,7 @@ final class TimeListEditViewController: UIViewController {
     private func saveTimeList() {
         // リファクタリングする
         timeList.setTime(at: selectedCellIndex + 1, date: timePicker.date)
-        timeListView.timeList = timeList
+        timeListView.setTimeList(timeList)
         timeListView.timeCollectionView.reloadData()
         timeListView.timeCollectionView.selectItem(at: IndexPath(row: selectedCellIndex, section: 0), animated: false, scrollPosition: .centeredHorizontally)
 

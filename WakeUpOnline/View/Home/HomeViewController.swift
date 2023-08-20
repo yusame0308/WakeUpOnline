@@ -46,7 +46,7 @@ final class HomeViewController: UIViewController {
     private let cellID = "homeCellID"
     private lazy var dataSource = configureDataSource()
 
-    private var subscriptions = Set<AnyCancellable>()
+    private var cancellables = Set<AnyCancellable>()
     private let viewModel: HomeViewModelable = HomeViewModel()
 
     override func viewDidLoad() {
@@ -96,7 +96,7 @@ final class HomeViewController: UIViewController {
             .sink { [weak self] userList in
                 self?.createSnapshot(with: userList)
             }
-            .store(in: &subscriptions)
+            .store(in: &cancellables)
 
         viewModel.isLoadingSubject
             .sink { [weak self] isLoading in
@@ -107,7 +107,7 @@ final class HomeViewController: UIViewController {
                     self?.indicator.stopAnimating()
                 }
             }
-            .store(in: &subscriptions)
+            .store(in: &cancellables)
 
         viewModel.showUserDetailViewSubject
             .sink { [weak self] user in
@@ -115,7 +115,7 @@ final class HomeViewController: UIViewController {
                 userDetailViewController.modalPresentationStyle = .pageSheet
                 self?.present(userDetailViewController, animated: true)
             }
-            .store(in: &subscriptions)
+            .store(in: &cancellables)
 
         viewModel.errorAlertSubject
             .sink { [weak self] message in
@@ -123,7 +123,7 @@ final class HomeViewController: UIViewController {
                 alert.addAction(UIAlertAction(title: "OK", style: .default))
                 self?.present(alert, animated: true)
             }
-            .store(in: &subscriptions)
+            .store(in: &cancellables)
     }
 
     private func configureDataSource() -> DataSource {

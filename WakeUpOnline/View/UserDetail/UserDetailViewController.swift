@@ -50,17 +50,12 @@ final class UserDetailViewController: UIViewController {
     }()
 
     // デイリーレコード
-    private lazy var dailyRecordView = DailyRecordView(width: view.bounds.width - 40, recordText: user.wakeUpLog.recordText)
+    private lazy var dailyRecordView = DailyRecordView(width: view.bounds.width - 40)
 
     init(user: User) {
         self.user = user
 
         super.init(nibName: nil, bundle: nil)
-
-        timeLabel.text = user.wakeUpTimeList.stringValues(of: Date.weekdayInt).time
-        userNameLabel.attributedText = user.name.attributedStringWithLineHeightMultiple(by: 0.85, isCentered: true)
-        messageLabel.attributedText = user.message.attributedStringWithLineHeightMultiple(by: 0.85, isCentered: true)
-        iconImageView.setIconImage(with: URL(string: user.iconUrl), width: UserDetailViewController.iconWidth)
     }
 
     required init?(coder: NSCoder) {
@@ -72,7 +67,16 @@ final class UserDetailViewController: UIViewController {
 
         view.backgroundColor = .white
 
+        render()
         setupLayout()
+    }
+
+    private func render() {
+        timeLabel.text = user.wakeUpTimeList.stringValues(of: Date.weekdayInt).time
+        userNameLabel.attributedText = user.name.attributedStringWithLineHeightMultiple(by: 0.85, isCentered: true)
+        messageLabel.attributedText = user.message.attributedStringWithLineHeightMultiple(by: 0.85, isCentered: true)
+        iconImageView.setIconImage(with: URL(string: user.iconUrl), width: UserDetailViewController.iconWidth)
+        dailyRecordView.setRecordText(user.wakeUpLog.recordText)
     }
 
     private func setupLayout() {
