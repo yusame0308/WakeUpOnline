@@ -67,6 +67,10 @@ final class HomeViewController: UIViewController, ErrorShowable {
         homeTableView.snp.makeConstraints { make in
             make.edges.equalTo(view.safeAreaLayoutGuide)
         }
+
+        indicator.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
     }
 
     private func setupAction() {

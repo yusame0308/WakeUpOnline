@@ -20,7 +20,6 @@ final class LoadingIndicator: UIActivityIndicatorView {
         isHidden = true
 
         snp.makeConstraints { make in
-            make.center.equalToSuperview()
             make.size.equalTo(CGSize(width: 100, height: 100))
         }
     }
@@ -33,8 +32,8 @@ final class LoadingIndicator: UIActivityIndicatorView {
     func setIsLoading(_ isLoading: Bool) {
         isHidden = !isLoading
 
-        if let superview = superview {
-            superview.isUserInteractionEnabled = !isLoading
+        if let topViewController = UIApplication.topViewController {
+            topViewController.view.isUserInteractionEnabled = !isLoading
         }
 
         if isLoading {

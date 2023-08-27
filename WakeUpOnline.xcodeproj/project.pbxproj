@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1A0260D12A9ADA0200C8B543 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0260D02A9ADA0200C8B543 /* LoadingIndicator.swift */; };
 		1A0260D42A9ADF1300C8B543 /* ErrorShowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0260D32A9ADF1300C8B543 /* ErrorShowable.swift */; };
+		1A0260D72A9B8EFD00C8B543 /* UIApplication-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0260D62A9B8EFD00C8B543 /* UIApplication-Extension.swift */; };
 		1A235E812A560FFA00B3571A /* SaveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A235E802A560FFA00B3571A /* SaveButton.swift */; };
 		1A235E852A5668E800B3571A /* Date-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A235E842A5668E800B3571A /* Date-Extension.swift */; };
 		1A380A202A30EC9900D3C58F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A380A1F2A30EC9900D3C58F /* AppDelegate.swift */; };
@@ -79,6 +80,7 @@
 /* Begin PBXFileReference section */
 		1A0260D02A9ADA0200C8B543 /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
 		1A0260D32A9ADF1300C8B543 /* ErrorShowable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorShowable.swift; sourceTree = "<group>"; };
+		1A0260D62A9B8EFD00C8B543 /* UIApplication-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication-Extension.swift"; sourceTree = "<group>"; };
 		1A235E802A560FFA00B3571A /* SaveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveButton.swift; sourceTree = "<group>"; };
 		1A235E842A5668E800B3571A /* Date-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date-Extension.swift"; sourceTree = "<group>"; };
 		1A380A1C2A30EC9900D3C58F /* WakeUpOnline.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WakeUpOnline.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -283,6 +285,7 @@
 				1AB455902A72FBAF003BF2B0 /* UIImageView-Extension.swift */,
 				1A588FB72A8FBDCD002DB446 /* Publisher-Extension.swift */,
 				1A0260D32A9ADF1300C8B543 /* ErrorShowable.swift */,
+				1A0260D62A9B8EFD00C8B543 /* UIApplication-Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -529,6 +532,7 @@
 				1A380A202A30EC9900D3C58F /* AppDelegate.swift in Sources */,
 				1A380A532A30F5E100D3C58F /* MypageViewController.swift in Sources */,
 				1A380A512A30F4CF00D3C58F /* MainTabBarController.swift in Sources */,
+				1A0260D72A9B8EFD00C8B543 /* UIApplication-Extension.swift in Sources */,
 				1AB455912A72FBAF003BF2B0 /* UIImageView-Extension.swift in Sources */,
 				1A811B8C2A3EEC6800B63D83 /* String-Extension.swift in Sources */,
 				1A0260D42A9ADF1300C8B543 /* ErrorShowable.swift in Sources */,
