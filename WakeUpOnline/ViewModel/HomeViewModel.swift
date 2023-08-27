@@ -14,7 +14,7 @@ protocol HomeViewModelable {
     var showUserDetailViewSubject: PassthroughSubject<User, Never> { get }
     var errorAlertSubject: PassthroughSubject<String, Never> { get }
     func fetchUserList() async
-    func reloadUserList() async
+    @MainActor func reloadUserList() async
     func handleDidSelectRowAt(_ indexPath: IndexPath)
 }
 
