@@ -8,13 +8,23 @@
 import Combine
 
 protocol MypageViewModelProtocol {
-    func transform(input: MypageViewModelInput, subscriptions: inout Set<AnyCancellable>) -> MypageViewModelOutput
+    func transform(input: MypageViewModelInput, cancellables: inout Set<AnyCancellable>) -> MypageViewModelOutput
 }
 
 struct MypageViewModelInput {
     let viewDidLoad: AnyPublisher<Void, Never>
     let profileViewTapped: AnyPublisher<Void, Never>
     let timeListViewTapped: AnyPublisher<Void, Never>
+    let profileEditInput: ProfileEditInput
+    let timeListEditInput: TimeListEditInput
+}
+
+struct ProfileEditInput {
+    let profileSaveButtonTapped: PassthroughSubject<UserUpdate, Never> = .init()
+}
+
+struct TimeListEditInput {
+    let timeListSaveButtonTapped: PassthroughSubject<WakeUpTimeList, Never> = .init()
 }
 
 struct MypageViewModelOutput {
@@ -39,7 +49,7 @@ struct MypageViewModel: MypageViewModelProtocol {
         self.firestoreClient = firestoreClient
     }
 
-    func transform(input: MypageViewModelInput, subscriptions: inout Set<AnyCancellable>) -> MypageViewModelOutput {
+    func transform(input: MypageViewModelInput, cancellables: inout Set<AnyCancellable>) -> MypageViewModelOutput {
         let errorAlertSubject = PassthroughSubject<String, Never>()
 
         // inputのviewDidLoadが呼ばれたらFirestoreからユーザを取得する
@@ -55,7 +65,15 @@ struct MypageViewModel: MypageViewModelProtocol {
                     }
                 }
             }
-            .store(in: &subscriptions)
+            .store(in: &cancellables)
+
+        // プロフィール保存ボタンが押されたらFirestoreを更新する
+        input.profileEditInput
+            .profileSaveButtonTapped
+            .sink { userUpdate in
+                print(userUpdate)
+            }
+            .store(in: &cancellables)
 
         // compactMapでnilを除去
         let currentUser = currentUserSubject

@@ -57,6 +57,8 @@ final class MypageViewController: UIViewController, ErrorShowable {
     private var viewDidLoadSubject = PassthroughSubject<Void, Never>()
     private var profileViewTappedSubject = PassthroughSubject<Void, Never>()
     private var timeListViewTappedSubject = PassthroughSubject<Void, Never>()
+    private var profileEditInput = ProfileEditInput()
+    private var timeListEditInput = TimeListEditInput()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -111,9 +113,11 @@ final class MypageViewController: UIViewController, ErrorShowable {
             input: .init(
                 viewDidLoad: viewDidLoadSubject.eraseToAnyPublisher(),
                 profileViewTapped: profileViewTappedSubject.eraseToAnyPublisher(),
-                timeListViewTapped: timeListViewTappedSubject.eraseToAnyPublisher()
+                timeListViewTapped: timeListViewTappedSubject.eraseToAnyPublisher(),
+                profileEditInput: profileEditInput,
+                timeListEditInput: timeListEditInput
             ),
-            subscriptions: &cancellables
+            cancellables: &cancellables
         )
 
         output
@@ -127,9 +131,17 @@ final class MypageViewController: UIViewController, ErrorShowable {
         output
             .presentProfileEditView
             .receive(on: DispatchQueue.main)
-            .sink { user in
-                print("Bind, onPresentProfileEditView")
-                print(user)
+            .sink { [weak self] user in
+                guard let self = self else { return }
+
+                // プロフィール編集画面に遷移
+                let profileEditViewController = ProfileEditViewController(user: user, input: self.profileEditInput)
+                profileEditViewController.delegate = self
+                // ハーフモーダルに設定
+                if let sheet = profileEditViewController.sheetPresentationController {
+                    sheet.detents = [.medium()]
+                }
+                self.present(profileEditViewController, animated: true)
             }
             .store(in: &cancellables)
 

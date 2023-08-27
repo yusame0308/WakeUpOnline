@@ -15,6 +15,7 @@ protocol ProfileEditViewControllerDelegate: AnyObject {
 final class ProfileEditViewController: UIViewController {
 
     weak var delegate: ProfileEditViewControllerDelegate?
+    let input: ProfileEditInput
 
     // アイコンの大きさ
     private static let iconWidth: CGFloat = 100
@@ -59,9 +60,10 @@ final class ProfileEditViewController: UIViewController {
     // 保存ボタン
     private let saveButton = SaveButton()
 
-    init(user: User) {
+    init(user: User, input: ProfileEditInput) {
         userNameTextField.text = user.name
         messageTextField.text = user.message
+        self.input = input
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -141,8 +143,10 @@ final class ProfileEditViewController: UIViewController {
     private func saveProfile() {
         Task {
             do {
-                try await delegate?.saveButtonDidPressed(userName: userNameTextField.text ?? "", message: messageTextField.text ?? "", iconImage: iconButton.imageView?.image)
-                try await FirestoreClient().uploadIconImage(data: iconButton.currentImage!.jpegData(compressionQuality: 1)!)
+                // リファクタリング
+                input.profileSaveButtonTapped.send(UserUpdate(name: "send", message: "send", iconImage: nil))
+//                try await delegate?.saveButtonDidPressed(userName: userNameTextField.text ?? "", message: messageTextField.text ?? "", iconImage: iconButton.imageView?.image)
+//                try await FirestoreClient().uploadIconImage(data: iconButton.currentImage!.jpegData(compressionQuality: 1)!)
                 self.dismiss(animated: true)
             } catch {
                 print(error.localizedDescription)
