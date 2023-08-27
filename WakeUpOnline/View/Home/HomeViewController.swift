@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Combine
 
-final class HomeViewController: UIViewController {
+final class HomeViewController: UIViewController, ErrorShowable {
 
     private typealias DataSource = UITableViewDiffableDataSource<Int, User>
     private typealias Snapshot = NSDiffableDataSourceSnapshot<Int, User>
@@ -100,9 +100,7 @@ final class HomeViewController: UIViewController {
 
         viewModel.errorAlertSubject
             .sink { [weak self] message in
-                let alert = UIAlertController(title: "エラー", message: message, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default))
-                self?.present(alert, animated: true)
+                self?.showErrorAlert(message: message)
             }
             .store(in: &cancellables)
     }

@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-final class MypageViewController: UIViewController {
+final class MypageViewController: UIViewController, ErrorShowable {
 
     // アイコン
     private let iconImageView: UIImageView = {
@@ -145,9 +145,8 @@ final class MypageViewController: UIViewController {
         output
             .showErrorAlert
             .receive(on: DispatchQueue.main)
-            .sink { message in
-                print("Bind, onShowErrorAlert")
-                print(message)
+            .sink { [weak self] message in
+                self?.showErrorAlert(message: message)
             }
             .store(in: &cancellables)
     }
