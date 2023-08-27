@@ -120,8 +120,7 @@ final class MypageViewController: UIViewController {
             .currentUser
             .receive(on: DispatchQueue.main)
             .sink { [weak self] user in
-                print("Bind, onFetchCurrentUser")
-                self?.render(with: user)
+                self?.updateViews(with: user)
             }
             .store(in: &cancellables)
 
@@ -153,7 +152,7 @@ final class MypageViewController: UIViewController {
             .store(in: &cancellables)
     }
 
-    private func render(with user: User) {
+    private func updateViews(with user: User) {
         userNameLabel.attributedText = user.name.attributedStringWithLineHeightMultiple(by: 0.85, isCentered: true)
         messageLabel.attributedText = user.message.attributedStringWithLineHeightMultiple(by: 0.85, isCentered: true)
         iconImageView.setIconImage(with: URL(string: user.iconUrl), width: MypageViewController.iconWidth)

@@ -32,16 +32,7 @@ final class HomeViewController: UIViewController {
     }()
 
     // インディケーター
-    private let indicator: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView()
-        indicator.style = .medium
-        indicator.color = .white
-        indicator.backgroundColor = .systemGray
-        indicator.layer.cornerRadius = 5.0
-        indicator.layer.opacity = 0.7
-        indicator.isHidden = true
-        return indicator
-    }()
+    private let indicator = LoadingIndicator()
 
     private let cellID = "homeCellID"
     private lazy var dataSource = configureDataSource()
@@ -76,11 +67,6 @@ final class HomeViewController: UIViewController {
         homeTableView.snp.makeConstraints { make in
             make.edges.equalTo(view.safeAreaLayoutGuide)
         }
-
-        indicator.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-            make.size.equalTo(CGSize(width: 100, height: 100))
-        }
     }
 
     private func setupAction() {
@@ -100,12 +86,7 @@ final class HomeViewController: UIViewController {
 
         viewModel.isLoadingSubject
             .sink { [weak self] isLoading in
-                self?.indicator.isHidden = !isLoading
-                if isLoading {
-                    self?.indicator.startAnimating()
-                } else {
-                    self?.indicator.stopAnimating()
-                }
+                self?.indicator.setIsLoading(isLoading)
             }
             .store(in: &cancellables)
 

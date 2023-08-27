@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A0260D12A9ADA0200C8B543 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0260D02A9ADA0200C8B543 /* LoadingIndicator.swift */; };
 		1A235E812A560FFA00B3571A /* SaveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A235E802A560FFA00B3571A /* SaveButton.swift */; };
 		1A235E852A5668E800B3571A /* Date-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A235E842A5668E800B3571A /* Date-Extension.swift */; };
 		1A380A202A30EC9900D3C58F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A380A1F2A30EC9900D3C58F /* AppDelegate.swift */; };
@@ -75,6 +76,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A0260D02A9ADA0200C8B543 /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
 		1A235E802A560FFA00B3571A /* SaveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveButton.swift; sourceTree = "<group>"; };
 		1A235E842A5668E800B3571A /* Date-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date-Extension.swift"; sourceTree = "<group>"; };
 		1A380A1C2A30EC9900D3C58F /* WakeUpOnline.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WakeUpOnline.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -217,9 +219,6 @@
 			children = (
 				1A380A5E2A318CE000D3C58F /* Common */,
 				1A380A5D2A318C8200D3C58F /* Mypage */,
-				1ADB14272A52B2E300BEEB1C /* TimeListEdit */,
-				1A6BBDFF2A4986560003D739 /* ProfileEdit */,
-				1A6519F62A41372C00CBA380 /* UserDetail */,
 				1A380A542A3171A900D3C58F /* Home */,
 			);
 			path = View;
@@ -231,6 +230,7 @@
 				1A380A232A30EC9900D3C58F /* HomeViewController.swift */,
 				1A380A552A31720100D3C58F /* HomeTableViewCell.swift */,
 				1A380A622A31B25E00D3C58F /* InfoCardView.swift */,
+				1A6519F62A41372C00CBA380 /* UserDetail */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -249,6 +249,8 @@
 			isa = PBXGroup;
 			children = (
 				1A380A522A30F5E100D3C58F /* MypageViewController.swift */,
+				1A6BBDFF2A4986560003D739 /* ProfileEdit */,
+				1ADB14272A52B2E300BEEB1C /* TimeListEdit */,
 			);
 			path = Mypage;
 			sourceTree = "<group>";
@@ -263,6 +265,7 @@
 				1A235E802A560FFA00B3571A /* SaveButton.swift */,
 				1A6BBE082A4D65B30003D739 /* TimeListView.swift */,
 				1ADB14212A51C69100BEEB1C /* TimeCollectionViewCell.swift */,
+				1A0260D02A9ADA0200C8B543 /* LoadingIndicator.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -525,6 +528,7 @@
 				1A380A512A30F4CF00D3C58F /* MainTabBarController.swift in Sources */,
 				1AB455912A72FBAF003BF2B0 /* UIImageView-Extension.swift in Sources */,
 				1A811B8C2A3EEC6800B63D83 /* String-Extension.swift in Sources */,
+				1A0260D12A9ADA0200C8B543 /* LoadingIndicator.swift in Sources */,
 				1A380A222A30EC9900D3C58F /* SceneDelegate.swift in Sources */,
 				1AB455752A615A73003BF2B0 /* Constant.swift in Sources */,
 				1A6BBE092A4D65B30003D739 /* TimeListView.swift in Sources */,
